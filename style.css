@@ -1,0 +1,234 @@
+.ascharts-logo {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  font-family: "Open Sans", Roboto, Arial, sans-serif !important;
+  letter-spacing: 0.5px;
+  text-transform: none !important;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* ---------- Sidebar ---------- */
+.desktop-drawer .MuiDrawer-paper {
+  background-color: var(--as-side-bg, #f7f9fc) !important;
+  border-right: 1px solid var(--as-line, #e3e8ef) !important;
+}
+
+.desktop-drawer .MuiDrawer-paper::after {
+  display: none !important;
+}
+
+html.as-sidebar-narrow .desktop-drawer .MuiDrawer-paper {
+  width: 200px !important;
+}
+html.as-sidebar-narrow #desktop-app > div:has(> .desktop-drawer) {
+  width: 200px !important;
+  min-width: 200px !important;
+}
+
+html.as-sidebar-wide .desktop-drawer .MuiDrawer-paper {
+  width: 300px !important;
+}
+html.as-sidebar-wide #desktop-app > div:has(> .desktop-drawer) {
+  width: 300px !important;
+  min-width: 300px !important;
+}
+
+.desktop-drawer-pupil > div:first-child > div {
+  margin: 14px 12px 6px !important;
+  width: auto !important;
+  padding: 12px 14px !important;
+  border-radius: 12px !important;
+  background: var(--as-card, #ffffff) !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  box-shadow: 0 1px 2px rgba(11, 31, 77, 0.06) !important;
+}
+
+.desktop-drawer-pupil > div:first-child > div,
+.desktop-drawer-pupil > div:first-child > div b {
+  color: var(--as-brand-fg, #0b1f4d) !important;
+}
+
+.desktop-drawer-pupil > div:first-child > div small {
+  color: var(--as-muted, #6b7385) !important;
+}
+
+.desktop-drawer-pupil > div:first-child > div img {
+  width: 38px !important;
+  height: 38px !important;
+  object-fit: cover;
+  border-radius: 50% !important;
+  background: var(--as-tint, #e4ebf8);
+  transition: transform 0.2s ease;
+}
+
+.desktop-drawer-pupil > div:first-child > div img:hover {
+  transform: scale(1.06);
+}
+
+.desktop-drawer nav.MuiList-root {
+  padding: 8px 0 !important;
+  border-top: 1px solid var(--as-line, #e3e8ef);
+  margin-top: 8px;
+}
+
+.desktop-drawer-pupil-menu-item {
+  position: relative;
+  margin: 0 10px !important;
+  width: calc(100% - 20px) !important;
+  min-height: 48px;
+  border-radius: 10px;
+  transition: background-color 0.15s ease, min-height 0.2s ease;
+}
+
+.desktop-drawer-pupil-menu-item::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 0;
+  height: 1px;
+  background: var(--as-line, #e3e8ef);
+  pointer-events: none;
+}
+
+.desktop-drawer-pupil-menu-item:last-child::after {
+  display: none;
+}
+
+.desktop-drawer-pupil-menu-item:hover {
+  background-color: var(--as-tint-2, #edf1f7) !important;
+}
+
+.desktop-drawer-pupil-menu-item .MuiListItemIcon-root {
+  min-width: 44px !important;
+  color: var(--as-muted, #5b6474) !important;
+}
+
+.desktop-drawer-pupil-menu-item .MuiListItemIcon-root > svg.MuiSvgIcon-root {
+  display: none !important;
+}
+
+.desktop-drawer-pupil-menu-item .MuiListItemIcon-root > svg.as-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--as-muted, #5b6474) !important;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.desktop-drawer-pupil-menu-item:hover .MuiListItemIcon-root > svg.as-icon {
+  color: var(--as-brand-fg, #0b1f4d) !important;
+  transform: translateX(1px);
+}
+
+.desktop-drawer-pupil-menu-item .MuiListItemText-primary {
+  color: var(--as-ink, #2b3240) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active] {
+  background-color: var(--as-tint, #e4ebf8) !important;
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--as-brand-fg, #0b1f4d);
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active]::after,
+.desktop-drawer-pupil-menu-item:has(+ [data-as-active])::after {
+  display: none;
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active] > div > svg.as-icon,
+.desktop-drawer-pupil-menu-item[data-as-active] .MuiListItemText-primary {
+  color: var(--as-brand-fg, #0b1f4d) !important;
+  font-weight: 700 !important;
+}
+
+/* Compact sidebar (settings) */
+html.as-compact .desktop-drawer-pupil-menu-item {
+  min-height: 40px;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+html.as-compact .desktop-drawer-pupil-menu-item .MuiListItemText-primary {
+  font-size: 14px !important;
+}
+
+html.as-compact .desktop-drawer-pupil-menu-item .MuiListItemIcon-root > svg.as-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Sidebar hide / show ---------- */
+.as-sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 12px 0 -8px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.as-sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.as-sidebar-toggle:active {
+  transform: scale(0.94);
+}
+
+.as-sidebar-toggle:focus-visible {
+  outline: 2px solid #8fb3ff;
+  outline-offset: 2px;
+}
+
+.as-sidebar-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.as-sidebar-ready #desktop-app > div:has(> .desktop-drawer) {
+  transition: width 0.28s ease, min-width 0.28s ease;
+  overflow: hidden;
+}
+
+.as-sidebar-ready .desktop-drawer .MuiDrawer-paper {
+  transition: transform 0.28s ease;
+}
+
+.as-sidebar-ready #desktop-app header.MuiAppBar-root {
+  transition: margin-left 0.28s ease, width 0.28s ease;
+}
+
+.as-sidebar-hidden #desktop-app > div:has(> .desktop-drawer) {
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+.as-sidebar-hidden .desktop-drawer .MuiDrawer-paper {
+  transform: translateX(-100%);
+}
+
+.as-sidebar-hidden #desktop-app header.MuiAppBar-root {
+  margin-left: 0 !important;
+  width: 100% !important;
+}

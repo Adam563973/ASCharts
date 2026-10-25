@@ -562,6 +562,32 @@ html.as-dark .as-settings-version {
   color: #64748b;
 }
 
+/* ─── Attribution ────────────────────────────────────── */
+.as-settings-attribution {
+  text-align: center;
+  padding: 8px 0 20px;
+  font-size: 11px;
+}
+
+.as-settings-attribution a {
+  color: var(--as-muted, #5b6474);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.as-settings-attribution a:hover {
+  color: var(--as-navy, #0b1f4d);
+  text-decoration: underline;
+}
+
+html.as-dark .as-settings-attribution a {
+  color: #64748b;
+}
+
+html.as-dark .as-settings-attribution a:hover {
+  color: var(--as-accent, #60a5fa);
+}
+
 /* ─── Disabled development features ───────────────────── */
 .as-feature-disabled {
   opacity: 1 !important;

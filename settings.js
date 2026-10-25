@@ -291,6 +291,12 @@
     version.textContent = 'ASCharts v1.3.8';
     body.appendChild(version);
 
+    // Attribution
+    const attribution = document.createElement('div');
+    attribution.className = 'as-settings-attribution';
+    attribution.innerHTML = `<a href="https://github.com/jamestheakston/classchartsimprover" target="_blank" rel="noopener noreferrer">Inspired by ClassCharts Improver</a>`;
+    body.appendChild(attribution);
+
     panel.appendChild(body);
     overlay.appendChild(panel);
     document.body.appendChild(overlay);

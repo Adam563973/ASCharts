@@ -1,13 +1,28 @@
 {
   "manifest_version": 3,
   "name": "ASCharts",
-  "version": "1.3",
-  "description": "ClassCharts restyled as ASCharts: dark blue banner, refreshed sidebar, themed content, dark mode, settings and smooth page transitions.",
+  "version": "1.3.10",
+  "description": "ASCharts visual refresh for Class Charts with accent theming, stable native dialogs, local display name, detention-free celebration, reading mode and optional keyboard shortcuts.",
   "content_scripts": [
     {
-      "matches": ["*://*.classcharts.com/*", "*://classcharts.com/*"],
-      "js": ["content.js", "sidebar.js", "pages.js", "settings.js"],
-      "css": ["style.css", "theme.css", "settings.css"],
+      "matches": [
+        "*://*.classcharts.com/*",
+        "*://classcharts.com/*"
+      ],
+      "js": [
+        "content.js",
+        "sidebar.js",
+        "pages.js",
+        "settings.js",
+        "concern-modal.js",
+        "mycode-modal.js",
+        "features.js"
+      ],
+      "css": [
+        "style.css",
+        "theme.css",
+        "settings.css"
+      ],
       "run_at": "document_idle",
       "all_frames": true
     }

@@ -13,6 +13,11 @@
     fontSize: LS_PREFIX + 'font-size',
     animSpeed: LS_PREFIX + 'anim-speed',
     sidebarWidth: LS_PREFIX + 'sidebar-width',
+    homeworkCardLayout: LS_PREFIX + 'homework-card-layout',
+    displayName: LS_PREFIX + 'display-name',
+    detentionCelebration: LS_PREFIX + 'detention-celebration',
+    readingMode: LS_PREFIX + 'reading-mode',
+    shortcuts: LS_PREFIX + 'keyboard-shortcuts',
   };
 
   const ACCENT_PRESETS = [
@@ -34,20 +39,51 @@
     } catch (e) {}
   }
 
+  // Keep the original ASCharts layout, but drive its brand colours from one
+  // accent selection so light-mode buttons, header, icons and selected states
+  // all change together.
+  const DEFAULT_ACCENT = '#0b1f4d';
+
+  function parseHex(hex) {
+    const match = String(hex || '').trim().match(/^#?([0-9a-f]{6})$/i);
+    if (!match) return [11, 31, 77];
+    const value = match[1];
+    return [parseInt(value.slice(0, 2), 16), parseInt(value.slice(2, 4), 16), parseInt(value.slice(4, 6), 16)];
+  }
+
+  function rgbHex(rgb) {
+    return '#' + rgb.map(value => Math.max(0, Math.min(255, value)).toString(16).padStart(2, '0')).join('');
+  }
+
+  function applyAccentTheme(color) {
+    const root = document.documentElement;
+    const rgb = parseHex(color);
+    const normalized = rgbHex(rgb);
+    const darker = rgbHex(rgb.map(channel => Math.round(channel * 0.78)));
+    const rgba = (alpha) => `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
+    root.style.setProperty('--as-accent', normalized);
+    root.style.setProperty('--as-navy', normalized);
+    root.style.setProperty('--as-navy-2', darker);
+    root.style.setProperty('--as-brand-fg', normalized);
+    root.style.setProperty('--as-tint', rgba(0.11));
+    root.style.setProperty('--as-tint-2', rgba(0.065));
+    root.style.setProperty('--as-accent-rgb', rgb.join(', '));
+  }
+
   /* ─── Apply saved settings on load ───────────────────── */
 
   function applyAll() {
-    // Dark mode
-    const dark = ls(KEYS.dark) === '1';
-    document.documentElement.classList.toggle('as-dark', dark);
+    // Dark mode is temporarily unavailable while it is being developed.
+    document.documentElement.classList.remove('as-dark');
+    ls(KEYS.dark, '0');
 
     // Compact sidebar
     const compact = ls(KEYS.compact) === '1';
     document.documentElement.classList.toggle('as-compact', compact);
 
-    // Accent color
-    const accent = ls(KEYS.accent);
-    if (accent) document.documentElement.style.setProperty('--as-accent', accent);
+    // Accent colour (applied consistently across the light theme)
+    const accent = ls(KEYS.accent) || DEFAULT_ACCENT;
+    applyAccentTheme(accent);
 
     // Font size
     const fontSize = ls(KEYS.fontSize) || 'default';
@@ -63,6 +99,11 @@
     // Sidebar width
     const sbWidth = ls(KEYS.sidebarWidth) || 'default';
     applySidebarWidth(sbWidth);
+
+    // New homework detail-card styling is a user-selectable option; enabled by default.
+    const newHomeworkCard = ls(KEYS.homeworkCardLayout) !== '0';
+    document.documentElement.classList.toggle('as-homework-card-layout', newHomeworkCard);
+    document.documentElement.classList.toggle('as-reading-mode', ls(KEYS.readingMode) === '1');
 
     // Avatar
     applyAvatar();
@@ -140,10 +181,18 @@
     // ─── Appearance Section
     body.appendChild(createSection('Appearance'));
 
-    // Dark mode toggle
-    body.appendChild(createToggle('Dark Mode', 'Switch to a dark colour scheme', KEYS.dark, (v) => {
-      document.documentElement.classList.toggle('as-dark', v);
-    }));
+    // Dark mode remains visible but disabled while it is in development.
+    const darkModeRow = createToggle('Dark Mode', 'In development', KEYS.dark, () => {});
+    darkModeRow.classList.add('as-feature-disabled');
+    const darkModeInput = darkModeRow.querySelector('input[type="checkbox"]');
+    if (darkModeInput) {
+      darkModeInput.checked = false;
+      darkModeInput.disabled = true;
+      darkModeInput.setAttribute('aria-label', 'Dark mode (in development)');
+    }
+    const darkModeSlider = darkModeRow.querySelector('.as-toggle-slider');
+    if (darkModeSlider) darkModeSlider.setAttribute('title', 'Dark mode is in development');
+    body.appendChild(darkModeRow);
 
     // Compact sidebar toggle
     body.appendChild(createToggle('Compact Sidebar', 'Reduce sidebar item spacing', KEYS.compact, (v) => {
@@ -158,6 +207,7 @@
 
     // Avatar
     body.appendChild(createAvatarPicker());
+    body.appendChild(createDisplayNameControl());
 
     // ─── Display Section
     body.appendChild(createSection('Display'));
@@ -187,6 +237,21 @@
       (v) => applySidebarWidth(v)
     ));
 
+    // Optional refreshed homework card style; off restores the site's default card styling.
+    body.appendChild(createToggle('Subtle Homework Card Styling', 'Slightly round the existing homework detail card and refine typography; does not change layout', KEYS.homeworkCardLayout, (enabled) => {
+      document.documentElement.classList.toggle('as-homework-card-layout', enabled);
+    }));
+
+    // ─── Fun & Productivity Section
+    body.appendChild(createSection('Fun & Productivity'));
+    body.appendChild(createToggle('Detention-free Celebration', 'When the Detentions page explicitly confirms none are assigned, show a brief confetti burst and cheerful chime. Off by default.', KEYS.detentionCelebration, () => {
+      window.dispatchEvent(new Event('ascharts:detention-celebration-setting-change'));
+    }));
+    body.appendChild(createToggle('Comfortable Reading', 'Increase text spacing in homework details, announcements and messages', KEYS.readingMode, (enabled) => {
+      document.documentElement.classList.toggle('as-reading-mode', enabled);
+    }));
+    body.appendChild(createToggle('Quick Navigation Shortcuts', 'Use Alt + Shift + 1–6 to open Behaviour, Announcements, Homework, Detentions, Timetable or Messages', KEYS.shortcuts, () => {}));
+
     // ─── Data Section
     body.appendChild(createSection('Data & Backup'));
 
@@ -211,10 +276,19 @@
     resetBtn.addEventListener('click', resetSettings);
     body.appendChild(resetBtn);
 
+    // ─── Community / Beta Programme
+    body.appendChild(createSection('Community'));
+    const betaBtn = document.createElement('button');
+    betaBtn.type = 'button';
+    betaBtn.className = 'as-settings-btn as-beta-programme-btn';
+    betaBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M5.6 18.4l2.1-2.1M12 18v3M18.4 18.4l-2.1-2.1M18 12h3M18.4 5.6l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg> Join Beta Programme`;
+    betaBtn.addEventListener('click', openBetaModal);
+    body.appendChild(betaBtn);
+
     // Version info
     const version = document.createElement('div');
     version.className = 'as-settings-version';
-    version.textContent = 'ASCharts v1.3';
+    version.textContent = 'ASCharts v1.3.8';
     body.appendChild(version);
 
     panel.appendChild(body);
@@ -231,6 +305,82 @@
       if (e.key === 'Escape') { closePanel(); document.removeEventListener('keydown', escHandler); }
     };
     document.addEventListener('keydown', escHandler);
+  }
+
+  function openBetaModal() {
+    if (document.querySelector('.as-info-modal-overlay')) return;
+    const overlay = document.createElement('div');
+    overlay.className = 'as-info-modal-overlay';
+    overlay.setAttribute('data-as-modal', 'beta');
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) closeInfoModal(overlay);
+    });
+
+    const headerElement = document.querySelector('#desktop-app header .MuiToolbar-root') || document.querySelector('#desktop-app header');
+    let headerFont = '"Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif';
+    try { if (headerElement) headerFont = getComputedStyle(headerElement).fontFamily || headerFont; } catch (e) {}
+    overlay.style.setProperty('--as-header-font', headerFont);
+
+    const card = document.createElement('section');
+    card.className = 'as-info-modal-card';
+    card.setAttribute('role', 'dialog');
+    card.setAttribute('aria-modal', 'true');
+    card.setAttribute('aria-labelledby', 'as-beta-modal-title');
+    card.innerHTML = `
+      <div class="as-info-modal-header">
+        <div class="as-info-modal-title" id="as-beta-modal-title">Join Beta Programme</div>
+        <button class="as-info-modal-close" type="button" aria-label="Close dialog" title="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="as-info-modal-body">
+        <p>Want to try upcoming ASCharts features?</p>
+        <p class="as-info-modal-email-line">Email <a class="as-info-modal-email" href="mailto:adamshahid153@gmail.com">adamshahid153@gmail.com</a> for further information on how to join the beta.</p>
+      </div>
+      <div class="as-info-modal-footer">
+        <button class="as-info-modal-button as-info-modal-button-secondary" type="button" data-as-close>Close</button>
+        <button class="as-info-modal-button as-info-modal-button-primary" type="button" data-as-copy>Copy email</button>
+      </div>`;
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+
+    const close = () => closeInfoModal(overlay);
+    card.querySelector('.as-info-modal-close').addEventListener('click', close);
+    card.querySelector('[data-as-close]').addEventListener('click', close);
+    card.querySelector('[data-as-copy]').addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      try {
+        await navigator.clipboard.writeText('adamshahid153@gmail.com');
+        button.textContent = 'Copied';
+      } catch (e) {
+        const email = card.querySelector('.as-info-modal-email');
+        const range = document.createRange();
+        range.selectNodeContents(email);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        button.textContent = 'Select and copy';
+      }
+    });
+    const esc = (event) => {
+      if (event.key === 'Escape' && document.body.contains(overlay)) {
+        closeInfoModal(overlay);
+        document.removeEventListener('keydown', esc, true);
+      }
+    };
+    document.addEventListener('keydown', esc, true);
+    overlay._asEscHandler = esc;
+    requestAnimationFrame(() => overlay.classList.add('as-info-modal-open'));
+    const closeButton = card.querySelector('.as-info-modal-close');
+    setTimeout(() => closeButton && closeButton.focus(), 50);
+  }
+
+  function closeInfoModal(overlay) {
+    if (!overlay || overlay.dataset.asClosing === '1') return;
+    overlay.dataset.asClosing = '1';
+    overlay.classList.remove('as-info-modal-open');
+    if (overlay._asEscHandler) document.removeEventListener('keydown', overlay._asEscHandler, true);
+    setTimeout(() => overlay.remove(), 190);
   }
 
   function closePanel() {
@@ -292,7 +442,7 @@
     const swatches = document.createElement('div');
     swatches.className = 'as-accent-swatches';
 
-    const current = ls(KEYS.accent) || '#1f4fd1';
+    const current = ls(KEYS.accent) || DEFAULT_ACCENT;
 
     ACCENT_PRESETS.forEach(({ name, color }) => {
       const btn = document.createElement('button');
@@ -303,7 +453,7 @@
       if (color === current) btn.classList.add('as-accent-selected');
 
       btn.addEventListener('click', () => {
-        document.documentElement.style.setProperty('--as-accent', color);
+        applyAccentTheme(color);
         ls(KEYS.accent, color);
         swatches.querySelectorAll('.as-accent-swatch').forEach(s => s.classList.remove('as-accent-selected'));
         btn.classList.add('as-accent-selected');
@@ -403,6 +553,61 @@
     return container;
   }
 
+  function createDisplayNameControl() {
+    const row = document.createElement('div');
+    row.className = 'as-settings-row as-settings-row-column as-display-name-setting';
+
+    const info = document.createElement('div');
+    info.className = 'as-settings-row-info';
+    info.innerHTML = `<div class="as-settings-label">Display Name</div><div class="as-settings-desc">Change the name shown in your profile card on this browser only. This does not change your school account.</div>`;
+    row.appendChild(info);
+
+    const controls = document.createElement('div');
+    controls.className = 'as-display-name-controls';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'as-settings-text-input';
+    input.maxLength = 40;
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    input.placeholder = 'Enter a display name';
+    input.setAttribute('aria-label', 'Local display name');
+    input.value = ls(KEYS.displayName) || '';
+
+    const actions = document.createElement('div');
+    actions.className = 'as-display-name-actions';
+    const save = document.createElement('button');
+    save.type = 'button';
+    save.className = 'as-settings-btn as-settings-btn-sm';
+    save.textContent = 'Apply';
+    const reset = document.createElement('button');
+    reset.type = 'button';
+    reset.className = 'as-settings-btn as-settings-btn-sm as-settings-btn-outline';
+    reset.textContent = 'Use account name';
+
+    const status = document.createElement('div');
+    status.className = 'as-display-name-status';
+    status.setAttribute('aria-live', 'polite');
+
+    const applyValue = (clear) => {
+      const value = clear ? '' : input.value.replace(/\s+/g, ' ').trim().slice(0, 40);
+      input.value = value;
+      ls(KEYS.displayName, value || null);
+      window.dispatchEvent(new Event('ascharts:display-name-change'));
+      status.textContent = value ? 'Updated on this device.' : 'Using the name from your school account.';
+    };
+    save.addEventListener('click', applyValue.bind(null, false));
+    reset.addEventListener('click', () => { input.value = ''; applyValue(true); });
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') { event.preventDefault(); applyValue(false); }
+    });
+
+    actions.append(save, reset);
+    controls.append(input, actions, status);
+    row.appendChild(controls);
+    return row;
+  }
+
   function createSelect(label, key, options, onChange) {
     const row = document.createElement('div');
     row.className = 'as-settings-row';
@@ -483,8 +688,10 @@
     if (!confirm('Reset all ASCharts settings to defaults? This cannot be undone.')) return;
     Object.values(KEYS).forEach(key => ls(key, null));
     // Remove classes
-    document.documentElement.classList.remove('as-dark', 'as-compact', 'as-font-small', 'as-font-large', 'as-anim-off', 'as-anim-slow', 'as-anim-fast');
-    document.documentElement.style.removeProperty('--as-accent');
+    document.documentElement.classList.remove('as-dark', 'as-compact', 'as-font-small', 'as-font-large', 'as-anim-off', 'as-anim-slow', 'as-anim-fast', 'as-reading-mode');
+    applyAccentTheme(DEFAULT_ACCENT);
+    ls(KEYS.dark, '0');
+    window.dispatchEvent(new Event('ascharts:display-name-change'));
     // Reset sidebar width
     applySidebarWidth('default');
     closePanel();

@@ -359,125 +359,6 @@
   padding: 8px 22px !important;
 }
 
-/* ---------- WhatsApp-Style Blue Theme Messaging ---------- */
-.desktop-messages-page .message-threads {
-  background: var(--as-card, #ffffff);
-  border-right: 1px solid var(--as-line, #e3e8ef);
-}
-
-.desktop-messages-page .message-threads .MuiListItem-root,
-.desktop-messages-page .message-threads [class*="thread"] {
-  border-radius: 10px !important;
-  margin: 3px 6px !important;
-  padding: 10px 14px !important;
-  transition: background-color 0.15s ease, border-left-color 0.15s ease !important;
-  border-left: 3px solid transparent !important;
-}
-
-.desktop-messages-page .message-threads .MuiListItem-root:hover,
-.desktop-messages-page .message-threads [class*="thread"]:hover {
-  background-color: #f1f5f9 !important;
-}
-
-.desktop-messages-page .message-threads .MuiListItem-root.Mui-selected,
-.desktop-messages-page .message-threads [class*="thread"][class*="active"],
-.desktop-messages-page .message-threads [class*="thread"][class*="selected"] {
-  background-color: var(--as-tint, #e4ebf8) !important;
-  border-left-color: var(--as-navy, #0b1f4d) !important;
-}
-
-.desktop-messages-page .message-threads .MuiAvatar-root,
-.desktop-messages-page .message-threads img {
-  border-radius: 50% !important;
-}
-
-/* Chat conversation area background */
-.desktop-messages-page > div:last-child {
-  background-color: #f8fafc;
-}
-
-/* Message bubbles base */
-.desktop-messages-page [class*="message-body"],
-.desktop-messages-page [class*="message-text"],
-.desktop-messages-page [class*="bubble"],
-.as-msg-sent,
-.as-msg-received {
-  font-family: "Open Sans", Roboto, sans-serif !important;
-  font-size: 14px !important;
-  line-height: 1.5 !important;
-  padding: 9px 14px 8px !important;
-  margin-bottom: 8px !important;
-  max-width: 72% !important;
-  word-break: break-word !important;
-  box-shadow: 0 1px 2px rgba(11, 31, 77, 0.06) !important;
-}
-
-/* Sent message to teacher (Blue theme WhatsApp style) */
-.as-msg-sent,
-.desktop-messages-page [class*="sent"] [class*="message-body"],
-.desktop-messages-page [class*="outgoing"] [class*="message-body"],
-.desktop-messages-page [class*="from-student"] [class*="message-body"] {
-  background-color: #dbeafe !important;
-  color: #0b1f4d !important;
-  border: 1px solid #bfdbfe !important;
-  border-radius: 16px 16px 4px 16px !important;
-  margin-left: auto !important;
-  box-shadow: 0 1px 3px rgba(31, 79, 209, 0.1) !important;
-}
-
-/* Received message from teacher (Clean WhatsApp white card bubble) */
-.as-msg-received,
-.desktop-messages-page [class*="received"] [class*="message-body"],
-.desktop-messages-page [class*="incoming"] [class*="message-body"],
-.desktop-messages-page [class*="from-teacher"] [class*="message-body"] {
-  background-color: #ffffff !important;
-  color: #1f2937 !important;
-  border: 1px solid var(--as-line, #e3e8ef) !important;
-  border-radius: 16px 16px 16px 4px !important;
-  margin-right: auto !important;
-}
-
-/* WhatsApp compose / input box */
-.desktop-messages-page textarea,
-.desktop-messages-page input[type="text"].as-chat-input,
-.as-chat-input {
-  border-radius: 22px !important;
-  background: #ffffff !important;
-  border: 1px solid var(--as-line, #e3e8ef) !important;
-  padding: 10px 18px !important;
-  font-family: "Open Sans", Roboto, sans-serif !important;
-  font-size: 14px !important;
-  color: var(--as-ink, #1f2937) !important;
-  box-shadow: 0 1px 4px rgba(11, 31, 77, 0.04) !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
-}
-
-.desktop-messages-page textarea:focus,
-.as-chat-input:focus {
-  border-color: var(--as-navy, #0b1f4d) !important;
-  box-shadow: 0 0 0 3px rgba(11, 31, 77, 0.1) !important;
-  outline: none !important;
-}
-
-/* Send button */
-.desktop-messages-page .as-chat-send,
-.desktop-messages-page button[type="submit"] {
-  background-color: var(--as-navy, #0b1f4d) !important;
-  color: #ffffff !important;
-  border-radius: 10px !important;
-  padding: 8px 18px !important;
-  font-weight: 600 !important;
-  text-transform: none !important;
-  box-shadow: 0 2px 6px rgba(11, 31, 77, 0.2) !important;
-  transition: background-color 0.15s ease, transform 0.15s ease !important;
-}
-
-.desktop-messages-page .as-chat-send:hover,
-.desktop-messages-page button[type="submit"]:hover {
-  background-color: var(--as-navy-2, #13306f) !important;
-  transform: translateY(-1px) !important;
-}
-
 /* ---------- Motion ---------- */
 @keyframes as-rise {
   from {
@@ -766,11 +647,6 @@ html.as-dark ::-webkit-scrollbar-thumb:hover {
   background: #64748b !important;
 }
 
-html.as-dark .desktop-messages-page .message-threads {
-  background: var(--as-card) !important;
-  border-right-color: var(--as-line) !important;
-}
-
 html.as-dark .MuiTab-root {
   color: var(--as-muted) !important;
 }
@@ -780,6 +656,9 @@ html.as-dark .MuiTab-root.Mui-selected {
 }
 
 html.as-dark .MuiTabs-indicator {
+  background-color: var(--as-accent, #60a5fa) !important;
+}
+
 /* =============================================================
    Popups, Dialogs, Modals, Menus & "My Code" Styling
    ============================================================= */
@@ -791,11 +670,23 @@ html.as-dark .MuiTabs-indicator {
   backdrop-filter: blur(2px) !important;
 }
 
+/* Keep modal containers transparent. The surface belongs on the dialog paper itself;
+   otherwise a date-picker wrapper can paint the whole viewport white. */
+.MuiModal-root,
+.MuiDialog-root,
+.MuiDialog-container {
+  background: transparent !important;
+}
+
+.MuiDialog-root > .MuiBackdrop-root,
+.MuiModal-root > .MuiBackdrop-root {
+  background-color: rgba(11, 31, 77, 0.42) !important;
+}
+
 /* Dialog & Modal paper */
 .MuiDialog-paper,
 .MuiDialog-paperWidthSm,
 .MuiDialog-paperWidthXs,
-[role="dialog"],
 .modal-content {
   border-radius: 14px !important;
   background-color: var(--as-card, #ffffff) !important;
@@ -807,7 +698,6 @@ html.as-dark .MuiTabs-indicator {
 }
 
 .MuiDialog-paper *,
-[role="dialog"] *,
 .modal-content * {
   font-family: "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
 }
@@ -815,7 +705,6 @@ html.as-dark .MuiTabs-indicator {
 /* Dialog header / title */
 .MuiDialogTitle-root,
 .MuiDialogTitle-root h2,
-[role="dialog"] h2,
 .modal-header {
   color: var(--as-navy, #0b1f4d) !important;
   font-weight: 700 !important;
@@ -889,13 +778,13 @@ html.as-dark .MuiTabs-indicator {
 
 /* Close icon button on popups */
 .MuiDialog-paper .MuiIconButton-root,
-[role="dialog"] .MuiIconButton-root {
+.modal-content .MuiIconButton-root {
   border-radius: 8px !important;
   transition: background-color 0.15s ease, transform 0.15s ease !important;
 }
 
 .MuiDialog-paper .MuiIconButton-root:hover,
-[role="dialog"] .MuiIconButton-root:hover {
+.modal-content .MuiIconButton-root:hover {
   background-color: rgba(11, 31, 77, 0.08) !important;
 }
 
@@ -977,7 +866,6 @@ html.as-dark .modal-backdrop {
 }
 
 html.as-dark .MuiDialog-paper,
-html.as-dark [role="dialog"],
 html.as-dark .modal-content {
   background-color: #1e293b !important;
   border-color: #334155 !important;
@@ -987,7 +875,6 @@ html.as-dark .modal-content {
 
 html.as-dark .MuiDialogTitle-root,
 html.as-dark .MuiDialogTitle-root h2,
-html.as-dark [role="dialog"] h2,
 html.as-dark .modal-header {
   color: #60a5fa !important;
   border-bottom-color: #334155 !important;
@@ -1073,5 +960,920 @@ html.as-dark .MuiTooltip-arrow {
   #desktop-app *,
   .desktop-drawer * {
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Cohesive accent theme and restrained interaction motion ---------- */
+#desktop-app header.MuiAppBar-root,
+#desktop-app header .MuiToolbar-root,
+.as-settings-header {
+  transition: background-color 0.18s ease !important;
+}
+
+#desktop-app .MuiButton-contained,
+#desktop-app .MuiButton-outlined,
+#desktop-app .MuiIconButton-root,
+#desktop-app a,
+#desktop-app input,
+#desktop-app textarea,
+#desktop-app select,
+#desktop-app .MuiPaper-root {
+  transition-duration: 0.16s !important;
+}
+
+#desktop-app .MuiButton-contained,
+#desktop-app .MuiButton-containedPrimary,
+#desktop-app .MuiButton-outlinedPrimary,
+#desktop-app .MuiRadio-root.Mui-checked,
+#desktop-app .MuiCheckbox-root.Mui-checked,
+#desktop-app .MuiCircularProgress-colorPrimary,
+#desktop-app .MuiFormLabel-root.Mui-focused,
+#desktop-app .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+#desktop-app .MuiOutlinedInput-root.Mui-focused,
+#desktop-app .MuiTabs-indicator,
+#desktop-app .MuiTab-root.Mui-selected {
+  border-color: var(--as-accent, #1f4fd1) !important;
+}
+
+#desktop-app .MuiButton-contained,
+#desktop-app .MuiButton-containedPrimary,
+#desktop-app .MuiButton-outlinedPrimary,
+#desktop-app .MuiRadio-root.Mui-checked,
+#desktop-app .MuiCheckbox-root.Mui-checked,
+#desktop-app .MuiCircularProgress-colorPrimary,
+#desktop-app .MuiFormLabel-root.Mui-focused,
+#desktop-app .MuiTab-root.Mui-selected,
+#desktop-app .MuiTabs-indicator {
+  color: var(--as-accent, #1f4fd1) !important;
+}
+
+#desktop-app .MuiButton-contained,
+#desktop-app .MuiButton-containedPrimary {
+  color: #ffffff !important;
+  background-color: var(--as-navy, #0b1f4d) !important;
+}
+
+#desktop-app .MuiButton-contained:hover,
+#desktop-app .MuiButton-containedPrimary:hover {
+  background-color: var(--as-navy-2, #13306f) !important;
+}
+
+#desktop-app .timetable-header .MuiSvgIcon-root,
+#desktop-app .attendance-page .MuiIconButton-root .MuiSvgIcon-root,
+#desktop-app .attendance-page .MuiCheckbox-root.Mui-checked,
+#desktop-app .attendance-page .MuiRadio-root.Mui-checked {
+  color: var(--as-accent, #1f4fd1) !important;
+}
+
+/* The calendar glyph in the dark date-range tile must stay high-contrast. */
+#desktop-app .calendar-header .MuiSvgIcon-root {
+  color: #ffffff !important;
+  fill: currentColor !important;
+  opacity: 1 !important;
+}
+
+#desktop-app .timetable-header .MuiPaper-rounded[data-as-selected] {
+  border-color: var(--as-accent, #1f4fd1) !important;
+  box-shadow: inset 0 0 0 200px var(--as-accent, #1f4fd1), 0 6px 16px -8px rgba(var(--as-accent-rgb, 31, 79, 209), 0.42) !important;
+}
+
+/* Keep sidebar hover/selection corners soft (avoid square MUI backgrounds). */
+.desktop-drawer-pupil-menu-item,
+.desktop-drawer-pupil-menu-item:hover,
+.desktop-drawer-pupil-menu-item[data-as-active] {
+  border-radius: 10px !important;
+  background-clip: padding-box !important;
+  transition: background-color 0.16s ease, color 0.16s ease, transform 0.16s ease !important;
+}
+
+.desktop-drawer-pupil-menu-item:hover {
+  transform: translateX(1px);
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active]::before {
+  border-radius: 4px !important;
+}
+
+/* Report Concern uses the same UI typeface as the application header. */
+.report-concern-page,
+.report-concern-page button,
+.report-concern-page input,
+.report-concern-page textarea,
+.report-concern-page select,
+.report-concern-page label,
+.report-concern-page h1,
+.report-concern-page h2,
+.report-concern-page h3,
+.report-concern-page p {
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+}
+
+.report-concern-page h1,
+.report-concern-page h2,
+.report-concern-page h3 {
+  font-weight: 700 !important;
+  letter-spacing: -0.2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .as-info-modal-overlay,
+  .as-info-modal-card,
+  .as-info-modal-button,
+  .desktop-drawer-pupil-menu-item,
+  #desktop-app .MuiButton-root,
+  #desktop-app .MuiIconButton-root {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================================
+   My Code — refined date-of-birth dialog
+   Scoped to dialogs containing date-of-birth fields so other pages
+   and Class Charts' existing form behaviour remain unchanged.
+   ============================================================= */
+.as-mycode-dialog {
+  --as-mycode-radius: 12px;
+  border-radius: 18px !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  color: var(--as-ink, #1f2937) !important;
+  box-shadow: 0 22px 60px rgba(11, 31, 77, 0.22), 0 4px 14px rgba(11, 31, 77, 0.08) !important;
+  animation: as-mycode-dialog-in 180ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+.as-mycode-dialog,
+.as-mycode-dialog * {
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  box-sizing: border-box;
+}
+
+.as-mycode-dialog .MuiDialogTitle-root,
+.as-mycode-dialog h1,
+.as-mycode-dialog h2,
+.as-mycode-dialog h3,
+.as-mycode-dialog [class*="title"] {
+  color: var(--as-navy, var(--as-accent, #0b1f4d)) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.25px !important;
+  line-height: 1.35 !important;
+}
+
+.as-mycode-dialog .MuiDialogTitle-root {
+  padding: 22px 24px 14px !important;
+  font-size: 19px !important;
+}
+
+.as-mycode-dialog .MuiDialogContent-root,
+.as-mycode-dialog .MuiDialogContentText-root {
+  padding: 16px 24px 22px !important;
+  color: var(--as-ink, #263247) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.as-mycode-dialog p,
+.as-mycode-dialog .MuiFormLabel-root,
+.as-mycode-dialog .MuiInputLabel-root,
+.as-mycode-dialog label {
+  color: var(--as-ink, #263247) !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.05px !important;
+}
+
+/* Material UI text/date/select controls and native DOB selectors. */
+.as-mycode-dialog .MuiOutlinedInput-root,
+.as-mycode-dialog .MuiInputBase-root,
+.as-mycode-dialog .MuiPickersInputBase-root,
+.as-mycode-dialog .MuiPickersOutlinedInput-root,
+.as-mycode-dialog input.as-mycode-field,
+.as-mycode-dialog select.as-mycode-field,
+.as-mycode-dialog [role="combobox"].as-mycode-field,
+.as-mycode-dialog input[type="date"],
+.as-mycode-dialog input[type="text"],
+.as-mycode-dialog input[type="number"],
+.as-mycode-dialog select {
+  min-height: 46px !important;
+  border-radius: var(--as-mycode-radius) !important;
+  color: var(--as-ink, #1f2937) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  background-color: #ffffff !important;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease, transform 150ms ease !important;
+}
+
+.as-mycode-dialog .MuiOutlinedInput-notchedOutline {
+  border: 1px solid var(--as-line, #dce3ee) !important;
+  border-radius: var(--as-mycode-radius) !important;
+  transition: border-color 150ms ease, box-shadow 150ms ease !important;
+}
+
+.as-mycode-dialog .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.as-mycode-dialog .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--as-accent, #1f4fd1) !important;
+}
+
+.as-mycode-dialog .MuiOutlinedInput-root.Mui-focused,
+.as-mycode-dialog .MuiInputBase-root.Mui-focused,
+.as-mycode-dialog .MuiPickersInputBase-root:focus-within,
+.as-mycode-dialog input.as-mycode-field:focus,
+.as-mycode-dialog select.as-mycode-field:focus,
+.as-mycode-dialog [role="combobox"].as-mycode-field:focus,
+.as-mycode-dialog input[type="date"]:focus,
+.as-mycode-dialog select:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(var(--as-accent-rgb, 31, 79, 209), 0.13) !important;
+}
+
+.as-mycode-dialog .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.as-mycode-dialog .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--as-accent, #1f4fd1) !important;
+  border-width: 1.5px !important;
+}
+
+.as-mycode-dialog input.as-mycode-field,
+.as-mycode-dialog input[type="date"],
+.as-mycode-dialog input[type="text"],
+.as-mycode-dialog input[type="number"],
+.as-mycode-dialog select.as-mycode-field,
+.as-mycode-dialog select {
+  width: 100%;
+  padding: 11px 13px !important;
+  border: 1px solid var(--as-line, #dce3ee) !important;
+  outline: none;
+}
+
+.as-mycode-dialog select.as-mycode-field,
+.as-mycode-dialog select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 42px !important;
+  background-image: linear-gradient(45deg, transparent 50%, var(--as-accent, #1f4fd1) 50%), linear-gradient(135deg, var(--as-accent, #1f4fd1) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 19px, calc(100% - 13px) 19px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.as-mycode-dialog .MuiSelect-select,
+.as-mycode-dialog .MuiPickersSectionList-root,
+.as-mycode-dialog .MuiPickersInputBase-sectionsContainer {
+  min-height: 46px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.as-mycode-dialog .MuiSvgIcon-root,
+.as-mycode-dialog .MuiInputAdornment-root .MuiIconButton-root {
+  color: var(--as-accent, #1f4fd1) !important;
+}
+
+.as-mycode-dialog .MuiInputAdornment-root .MuiIconButton-root {
+  border-radius: 9px !important;
+  transition: background-color 150ms ease, transform 150ms ease !important;
+}
+
+.as-mycode-dialog .MuiInputAdornment-root .MuiIconButton-root:hover {
+  background-color: var(--as-tint, rgba(31, 79, 209, 0.1)) !important;
+  transform: translateY(-1px);
+}
+
+.as-mycode-dialog .MuiDialogActions-root {
+  padding: 12px 24px 22px !important;
+  gap: 10px !important;
+}
+
+.as-mycode-dialog .MuiButton-root,
+.as-mycode-dialog button,
+.as-mycode-dialog input[type="submit"] {
+  min-height: 40px;
+  border-radius: 10px !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  font-size: 13.5px !important;
+  font-weight: 650 !important;
+  text-transform: none !important;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease, border-color 150ms ease !important;
+}
+
+.as-mycode-dialog .MuiButton-contained,
+.as-mycode-dialog button[type="submit"],
+.as-mycode-dialog input[type="submit"] {
+  color: #ffffff !important;
+  background-color: var(--as-accent, #0b1f4d) !important;
+  box-shadow: 0 3px 8px rgba(var(--as-accent-rgb, 11, 31, 77), 0.19) !important;
+}
+
+.as-mycode-dialog .MuiButton-contained:hover,
+.as-mycode-dialog button[type="submit"]:hover,
+.as-mycode-dialog input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 15px rgba(var(--as-accent-rgb, 11, 31, 77), 0.22) !important;
+}
+
+.as-mycode-dialog .MuiButton-root:active,
+.as-mycode-dialog button:active,
+.as-mycode-dialog input[type="submit"]:active {
+  transform: scale(0.985);
+}
+
+@keyframes as-mycode-dialog-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .as-mycode-dialog,
+  .as-mycode-dialog * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =============================================================
+   My Code — Material UI DOB calendar / year selector
+   The picker opens in a React portal outside .as-mycode-dialog, so the
+   dialog-scoped rules above cannot reach its toolbar and year list. These
+   rules activate only while the My Code DOB dialog is open.
+   Supports legacy @material-ui/pickers and newer MUI X class names.
+   ============================================================= */
+html.as-mycode-active .MuiDialog-paper.as-mycode-picker,
+html.as-mycode-active .MuiPopover-paper.as-mycode-picker,
+html.as-mycode-active .MuiPickersModal-dialogRoot.as-mycode-picker,
+html.as-mycode-active .MuiPickersPopper-root.as-mycode-picker,
+html.as-mycode-active .MuiPickersPopper-paper.as-mycode-picker {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  box-shadow: 0 18px 48px rgba(11, 31, 77, 0.22), 0 3px 10px rgba(11, 31, 77, 0.08) !important;
+  color: var(--as-ink, #1f2937) !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  animation: as-mycode-picker-in 150ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+/* Legacy Material UI picker has a full-width blue toolbar above the year list. */
+html.as-mycode-active .MuiPickersToolbar-toolbar,
+html.as-mycode-active .MuiPickersToolbar-root,
+html.as-mycode-active .MuiPickersToolbar-toolbarLandscape,
+html.as-mycode-active .MuiPickersLayout-root .MuiPickersToolbar-root {
+  background: var(--as-accent, #0b1f4d) !important;
+  background-color: var(--as-accent, #0b1f4d) !important;
+  color: #ffffff !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+}
+
+html.as-mycode-active .MuiPickersToolbar-toolbar *,
+html.as-mycode-active .MuiPickersToolbar-root *,
+html.as-mycode-active .MuiPickersToolbarText-toolbarTxt,
+html.as-mycode-active .MuiPickersToolbarText-toolbarBtn,
+html.as-mycode-active .MuiPickersToolbarText-toolbarBtnSelected,
+html.as-mycode-active .MuiPickersLayout-root .MuiPickersToolbar-root * {
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+}
+
+html.as-mycode-active .MuiPickersToolbar-toolbar .MuiTypography-root,
+html.as-mycode-active .MuiPickersToolbar-root .MuiTypography-root,
+html.as-mycode-active .MuiPickersToolbarText-toolbarTxt,
+html.as-mycode-active .MuiPickersToolbarText-toolbarBtnSelected {
+  color: #ffffff !important;
+}
+
+html.as-mycode-active .MuiPickersToolbarText-toolbarBtn {
+  color: rgba(255, 255, 255, 0.76) !important;
+}
+
+html.as-mycode-active .MuiPickersYear-root,
+html.as-mycode-active .MuiYearCalendar-root {
+  background: #ffffff !important;
+  color: var(--as-ink, #253047) !important;
+  padding: 7px 8px 10px !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--as-accent-rgb, 11, 31, 77), 0.35) transparent;
+}
+
+html.as-mycode-active .MuiPickersYear-yearButton,
+html.as-mycode-active .MuiPickersYear-yearSelected,
+html.as-mycode-active .MuiYearCalendar-button {
+  min-width: 70px !important;
+  min-height: 38px !important;
+  margin: 2px auto !important;
+  padding: 6px 14px !important;
+  border-radius: 10px !important;
+  color: var(--as-ink, #253047) !important;
+  background: transparent !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  transition: color 140ms ease, background-color 140ms ease, transform 140ms ease !important;
+}
+
+html.as-mycode-active .MuiPickersYear-yearButton:hover,
+html.as-mycode-active .MuiYearCalendar-button:hover {
+  color: var(--as-accent, #0b1f4d) !important;
+  background: var(--as-tint, rgba(11, 31, 77, 0.1)) !important;
+}
+
+html.as-mycode-active .MuiPickersYear-yearSelected,
+html.as-mycode-active .MuiPickersYear-yearButton.Mui-selected,
+html.as-mycode-active .MuiYearCalendar-button.Mui-selected {
+  color: var(--as-accent, #0b1f4d) !important;
+  background: var(--as-tint, rgba(11, 31, 77, 0.1)) !important;
+  font-size: 17px !important;
+  font-weight: 750 !important;
+}
+
+html.as-mycode-active .MuiPickersYear-yearDisabled,
+html.as-mycode-active .MuiYearCalendar-button.Mui-disabled {
+  color: #a0a8b6 !important;
+}
+
+/* Calendar month/day controls share the same accent and rounded interactions. */
+html.as-mycode-active .MuiPickersCalendarHeader-root,
+html.as-mycode-active .MuiPickersCalendarHeader-switchHeader,
+html.as-mycode-active .MuiPickersCalendarHeader-transitionContainer,
+html.as-mycode-active .MuiPickersCalendarHeader-label,
+html.as-mycode-active .MuiPickersCalendarHeader-labelContainer {
+  color: var(--as-ink, #253047) !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  font-weight: 650 !important;
+}
+
+html.as-mycode-active .MuiPickersCalendarHeader-iconButton,
+html.as-mycode-active .MuiPickersArrowSwitcher-button,
+html.as-mycode-active .MuiPickersCalendarHeader-switchHeader button {
+  border-radius: 9px !important;
+  color: var(--as-accent, #0b1f4d) !important;
+  transition: background-color 140ms ease, transform 140ms ease !important;
+}
+
+html.as-mycode-active .MuiPickersCalendarHeader-iconButton:hover,
+html.as-mycode-active .MuiPickersArrowSwitcher-button:hover,
+html.as-mycode-active .MuiPickersCalendarHeader-switchHeader button:hover {
+  background: var(--as-tint, rgba(11, 31, 77, 0.1)) !important;
+}
+
+html.as-mycode-active .MuiPickersDay-day,
+html.as-mycode-active .MuiPickersDay-root {
+  border-radius: 10px !important;
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  transition: color 140ms ease, background-color 140ms ease, transform 140ms ease !important;
+}
+
+html.as-mycode-active .MuiPickersDay-day:hover,
+html.as-mycode-active .MuiPickersDay-root:hover {
+  background: var(--as-tint, rgba(11, 31, 77, 0.1)) !important;
+}
+
+html.as-mycode-active .MuiPickersDay-daySelected,
+html.as-mycode-active .MuiPickersDay-root.Mui-selected {
+  color: #ffffff !important;
+  background: var(--as-accent, #0b1f4d) !important;
+}
+
+html.as-mycode-active .MuiPickersDay-current:not(.MuiPickersDay-daySelected),
+html.as-mycode-active .MuiPickersDay-root.MuiPickersDay-today:not(.Mui-selected) {
+  color: var(--as-accent, #0b1f4d) !important;
+  border: 1px solid var(--as-accent, #0b1f4d) !important;
+}
+
+html.as-mycode-active .as-mycode-picker-part {
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+}
+
+@keyframes as-mycode-picker-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.as-mycode-active .as-mycode-picker,
+  html.as-mycode-active .MuiPickersYear-yearButton,
+  html.as-mycode-active .MuiYearCalendar-button,
+  html.as-mycode-active .MuiPickersDay-day,
+  html.as-mycode-active .MuiPickersDay-root {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================================
+   Homework details — restrained polish, original card layout retained.
+   The toggle only changes corners/type/status controls; it does not resize
+   the dialog or change its structure, padding, or page layout.
+   ============================================================= */
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper {
+  box-sizing: border-box !important;
+  width: min(960px, calc(100vw - 40px)) !important;
+  max-width: min(960px, calc(100vw - 40px)) !important;
+  max-height: calc(100% - 48px) !important;
+  margin: 24px !important;
+  padding: 0 !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  border-radius: 14px !important;
+  background: var(--as-card, #ffffff) !important;
+  color: var(--as-ink, #1f2937) !important;
+  box-shadow: 0 16px 44px rgba(11, 31, 77, 0.18), 0 3px 10px rgba(11, 31, 77, 0.06) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--as-accent-rgb, 11, 31, 77), 0.3) transparent;
+  animation: as-homework-dialog-in 150ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) {
+  padding: 30px 34px 32px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div[style*="margin-bottom"] {
+  margin-bottom: 12px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper * {
+  font-family: var(--as-header-font, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif) !important;
+  box-sizing: border-box;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper h4.MuiTypography-h4,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-h4 {
+  color: var(--as-navy, #0b1f4d) !important;
+  font-size: clamp(21px, 1.8vw, 24px) !important;
+  font-weight: 650 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.3px !important;
+  overflow-wrap: anywhere;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper h5.MuiTypography-h5,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-h5 {
+  color: var(--as-muted, #5b6474) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper h6,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-h6 {
+  color: var(--as-navy, #0b1f4d) !important;
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.08px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper p,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-body1,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-body2 {
+  color: var(--as-ink, #1f2937) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  overflow-wrap: anywhere;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper strong,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper b {
+  color: var(--as-navy, #0b1f4d) !important;
+  font-weight: 650 !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper a {
+  color: var(--as-accent, #1f4fd1) !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+  transition: color 140ms ease, text-decoration-color 140ms ease !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper a:hover {
+  color: var(--as-navy-2, #13306f) !important;
+  text-decoration: underline !important;
+}
+
+/* Keep Class Charts status chips native: ASCharts does not restyle To do/Completed. */
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiCheckbox-root,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiRadio-root,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiSwitch-root {
+  color: var(--as-muted, #5b6474) !important;
+  transition: color 140ms ease, background-color 140ms ease !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiCheckbox-root.Mui-checked,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiRadio-root.Mui-checked,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiSwitch-colorPrimary.Mui-checked {
+  color: var(--as-accent, #1f4fd1) !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiButton-root {
+  min-height: 34px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiButton-contained,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiButton-containedPrimary {
+  background: var(--as-accent, #1f4fd1) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(var(--as-accent-rgb, 11, 31, 77), 0.18) !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiButton-contained:hover,
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiButton-containedPrimary:hover {
+  background: var(--as-navy-2, #13306f) !important;
+  box-shadow: 0 4px 12px rgba(var(--as-accent-rgb, 11, 31, 77), 0.2) !important;
+  transform: translateY(-1px);
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-details-dialog-close-button,
+html.as-homework-card-layout .homework-details-dialog .MuiIconButton-root {
+  border-radius: 8px !important;
+  color: var(--as-muted, #5b6474) !important;
+  transition: background-color 140ms ease, color 140ms ease !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-details-dialog-close-button:hover,
+html.as-homework-card-layout .homework-details-dialog .MuiIconButton-root:hover {
+  color: var(--as-accent, #1f4fd1) !important;
+  background: var(--as-tint, rgba(11, 31, 77, 0.1)) !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper hr {
+  border: 0 !important;
+  border-top: 1px solid var(--as-line, #e3e8ef) !important;
+}
+
+@keyframes as-homework-dialog-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100% - 24px) !important;
+    margin: 12px !important;
+    border-radius: 13px !important;
+  }
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) {
+    padding: 22px 18px 24px !important;
+  }
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper h4.MuiTypography-h4,
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-h4 {
+    font-size: 21px !important;
+  }
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper p,
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-body1,
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper .MuiTypography-body2 {
+    font-size: 13.5px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper {
+    animation: none !important;
+  }
+  html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =============================================================
+   Messaging refinement — native controls, clearer hierarchy
+   Adds real separators and keeps styling on the outer message
+   surface instead of painting nested text wrappers as extra bubbles.
+   ============================================================= */
+.desktop-messages-page {
+  min-width: 0 !important;
+  background: var(--as-bg, #f3f5f9) !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(11, 31, 77, 0.05) !important;
+}
+
+.desktop-messages-page .message-threads {
+  box-sizing: border-box !important;
+  flex: 0 0 clamp(250px, 30%, 340px) !important;
+  width: clamp(250px, 30%, 340px) !important;
+  min-width: 220px !important;
+  max-width: 38% !important;
+  min-height: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: 8px 0 !important;
+  background: var(--as-card, #fff) !important;
+  border-right: 1px solid var(--as-line, #e3e8ef) !important;
+}
+
+/* Each conversation remains a native clickable row; fine separators restore structure. */
+.desktop-messages-page .message-threads .MuiListItem-root,
+.desktop-messages-page .message-threads .MuiListItemButton-root,
+.desktop-messages-page .message-threads > [class*="thread"] {
+  box-sizing: border-box !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 11px 14px !important;
+  border-bottom: 1px solid var(--as-line, #e3e8ef) !important;
+  border-left: 3px solid transparent !important;
+  background-clip: padding-box !important;
+  transition: background-color 140ms ease, border-color 140ms ease !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItem-root:last-child,
+.desktop-messages-page .message-threads .MuiListItemButton-root:last-child,
+.desktop-messages-page .message-threads > [class*="thread"]:last-child {
+  border-bottom-color: transparent !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItem-root:hover,
+.desktop-messages-page .message-threads .MuiListItemButton-root:hover,
+.desktop-messages-page .message-threads > [class*="thread"]:hover {
+  background: var(--as-tint-2, #f2f5fa) !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItem-root.Mui-selected,
+.desktop-messages-page .message-threads .MuiListItemButton-root.Mui-selected,
+.desktop-messages-page .message-threads > [class*="thread"][class*="active"],
+.desktop-messages-page .message-threads > [class*="thread"][class*="selected"] {
+  background: var(--as-tint, #e4ebf8) !important;
+  border-left-color: var(--as-accent, #1f4fd1) !important;
+}
+
+.desktop-messages-page .message-threads .MuiAvatar-root,
+.desktop-messages-page .message-threads img {
+  flex-shrink: 0 !important;
+  border-radius: 50% !important;
+}
+
+/* Conversation pane and native MUI dividers. */
+.desktop-messages-page > div:last-child {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: #f8fafc !important;
+}
+
+.desktop-messages-page .MuiDivider-root,
+.desktop-messages-page hr,
+.desktop-messages-page [class*="message-divider"],
+.desktop-messages-page [class*="date-separator"] {
+  display: block;
+  border-color: var(--as-line, #e3e8ef) !important;
+  background-color: var(--as-line, #e3e8ef) !important;
+  opacity: 1 !important;
+}
+
+.desktop-messages-page .MuiDivider-root::before,
+.desktop-messages-page .MuiDivider-root::after {
+  border-color: var(--as-line, #e3e8ef) !important;
+}
+
+/* Outer message surfaces stay compact and readable. */
+.desktop-messages-page [class*="message-body"],
+.desktop-messages-page [class*="message-text"],
+.desktop-messages-page [class*="bubble"],
+.desktop-messages-page .as-msg-sent,
+.desktop-messages-page .as-msg-received {
+  box-sizing: border-box !important;
+  max-width: min(74%, 680px) !important;
+  padding: 10px 14px !important;
+  margin-bottom: 10px !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  font-family: "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  box-shadow: 0 1px 2px rgba(11, 31, 77, 0.045) !important;
+}
+
+.desktop-messages-page [class*="sent"] [class*="message-body"],
+.desktop-messages-page [class*="outgoing"] [class*="message-body"],
+.desktop-messages-page [class*="from-student"] [class*="message-body"],
+.desktop-messages-page [class*="sent"] [class*="message-text"],
+.desktop-messages-page [class*="outgoing"] [class*="message-text"],
+.desktop-messages-page [class*="from-student"] [class*="message-text"],
+.desktop-messages-page .as-msg-sent {
+  background: var(--as-tint, #eaf0ff) !important;
+  color: var(--as-ink, #1f2937) !important;
+  border: 1px solid rgba(var(--as-accent-rgb, 31, 79, 209), 0.2) !important;
+  border-radius: 14px 14px 4px 14px !important;
+  margin-left: auto !important;
+}
+
+.desktop-messages-page [class*="received"] [class*="message-body"],
+.desktop-messages-page [class*="incoming"] [class*="message-body"],
+.desktop-messages-page [class*="from-teacher"] [class*="message-body"],
+.desktop-messages-page [class*="received"] [class*="message-text"],
+.desktop-messages-page [class*="incoming"] [class*="message-text"],
+.desktop-messages-page [class*="from-teacher"] [class*="message-text"],
+.desktop-messages-page .as-msg-received {
+  background: var(--as-card, #fff) !important;
+  color: var(--as-ink, #1f2937) !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  border-radius: 14px 14px 14px 4px !important;
+  margin-right: auto !important;
+}
+
+/* Keep message text from becoming a second nested bubble when wrapped by a body container. */
+.desktop-messages-page [class*="message-body"] [class*="message-text"],
+.desktop-messages-page [class*="bubble"] [class*="message-text"] {
+  display: inline !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+
+.desktop-messages-page textarea,
+.desktop-messages-page input[type="text"],
+.desktop-messages-page .as-chat-input {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  border-radius: 10px !important;
+  background: var(--as-card, #fff) !important;
+  border: 1px solid var(--as-line, #e3e8ef) !important;
+  padding: 10px 12px !important;
+  font-family: "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: var(--as-ink, #1f2937) !important;
+  box-shadow: none !important;
+  transition: border-color 140ms ease, box-shadow 140ms ease !important;
+}
+
+.desktop-messages-page textarea:focus,
+.desktop-messages-page input[type="text"]:focus,
+.desktop-messages-page .as-chat-input:focus {
+  border-color: var(--as-accent, #1f4fd1) !important;
+  box-shadow: 0 0 0 3px rgba(var(--as-accent-rgb, 31, 79, 209), 0.12) !important;
+  outline: none !important;
+}
+
+.desktop-messages-page .as-chat-send,
+.desktop-messages-page button[type="submit"] {
+  background: var(--as-accent, #0b1f4d) !important;
+  color: #fff !important;
+  border: 1px solid var(--as-accent, #0b1f4d) !important;
+  border-radius: 9px !important;
+  padding: 8px 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  transition: background-color 140ms ease, transform 140ms ease !important;
+}
+
+.desktop-messages-page .as-chat-send:hover,
+.desktop-messages-page button[type="submit"]:hover {
+  filter: brightness(0.94);
+  transform: translateY(-1px) !important;
+}
+
+html.as-dark .desktop-messages-page,
+html.as-dark .desktop-messages-page > div:last-child {
+  background: var(--as-bg, #0f172a) !important;
+}
+html.as-dark .desktop-messages-page .message-threads {
+  background: var(--as-card, #1e293b) !important;
+  border-right-color: var(--as-line, #334155) !important;
+}
+
+@media (max-width: 700px) {
+  .desktop-messages-page .message-threads {
+    flex-basis: 38% !important;
+    width: 38% !important;
+    min-width: 0 !important;
+    max-width: 42% !important;
+  }
+  .desktop-messages-page [class*="message-body"],
+  .desktop-messages-page [class*="bubble"],
+  .desktop-messages-page .as-msg-sent,
+  .desktop-messages-page .as-msg-received {
+    max-width: 90% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-messages-page * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

@@ -738,6 +738,333 @@ html.as-dark .timetable-header .MuiPaper-rounded[data-as-selected] {
   box-shadow: inset 0 0 0 200px var(--as-accent), 0 8px 18px -8px rgba(96, 165, 250, 0.4) !important;
 }
 
+/* ---------- Homework Details Card ---------- */
+.jss60 {
+  padding: 16px 24px !important;
+}
+
+.homework-details {
+  background: var(--as-card) !important;
+  border: 1px solid var(--as-line) !important;
+  border-radius: var(--as-radius) !important;
+  box-shadow: var(--as-shadow) !important;
+  padding: 24px 28px !important;
+  margin-bottom: 18px !important;
+  transition: transform 0.22s var(--as-ease), box-shadow 0.22s var(--as-ease) !important;
+}
+
+.homework-details:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--as-shadow-hover) !important;
+}
+
+.homework-details > div > div[style*="margin-bottom"] {
+  margin-bottom: 16px !important;
+}
+
+/* Status badge */
+.homework-details .homework-group-header-badge,
+.homework-details .jss67 {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.homework-details .homework-group-header-badge[style*="rgb(158, 158, 158)"],
+.homework-details .jss67[style*="rgb(158, 158, 158)"] {
+  background-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.homework-details .homework-group-header-badge[style*="rgb(76, 175, 80)"],
+.homework-details .jss67[style*="rgb(76, 175, 80)"] {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.homework-details .homework-group-header-badge[style*="rgb(244, 67, 54)"],
+.homework-details .jss67[style*="rgb(244, 67, 54)"] {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.homework-details .homework-group-header-badge[style*="rgb(255, 152, 0)"],
+.homework-details .jss67[style*="rgb(255, 152, 0)"] {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+/* Title */
+.homework-details h4.MuiTypography-h4,
+.homework-details .jss76 {
+  color: var(--as-navy) !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px !important;
+  line-height: 1.2;
+}
+
+/* Subtitle (class/teacher) */
+.homework-details h5.MuiTypography-h5,
+.homework-details .jss77 {
+  color: var(--as-muted) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin: 0 0 20px !important;
+  line-height: 1.5;
+}
+
+.homework-details h5.MuiTypography-h5 span {
+  color: var(--as-muted) !important;
+}
+
+/* Metadata section */
+.homework-details .jss78 {
+  background: var(--as-bg) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 20px !important;
+  border: 1px solid var(--as-line) !important;
+}
+
+.homework-details .jss78 > div {
+  color: var(--as-ink) !important;
+  font-size: 14px !important;
+  line-height: 1.9;
+  margin: 5px 0;
+}
+
+.homework-details .jss78 b {
+  color: var(--as-navy) !important;
+  font-weight: 600 !important;
+  min-width: 85px;
+  display: inline-block;
+}
+
+.homework-details .jss78 time {
+  color: var(--as-ink) !important;
+  font-weight: 500 !important;
+}
+
+/* Checkbox section */
+.homework-details .jss81 {
+  margin-bottom: 20px !important;
+  padding: 14px 0 !important;
+}
+
+.homework-details .MuiFormControl-root {
+  margin: 0 !important;
+}
+
+.homework-details .MuiFormControlLabel-root {
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+.homework-details .MuiFormControlLabel-label {
+  color: var(--as-ink) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  margin-left: 8px !important;
+}
+
+.homework-details .MuiCheckbox-root {
+  color: var(--as-navy) !important;
+}
+
+.homework-details .MuiCheckbox-root.Mui-checked {
+  color: var(--as-navy) !important;
+}
+
+/* Ensure checkbox SVG icon is always visible */
+.homework-details .MuiCheckbox-root .MuiSvgIcon-root {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homework-details .MuiCheckbox-root .MuiIconButton-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.homework-details .MuiCheckbox-root input {
+  opacity: 0 !important;
+  position: absolute !important;
+}
+
+/* Description box */
+.homework-details .jss74 {
+  background: var(--as-tint, #e4ebf8) !important;
+  border-radius: 12px !important;
+  padding: 18px 22px !important;
+  border-left: 4px solid var(--as-navy) !important;
+  margin-top: 8px !important;
+}
+
+.homework-details .jss74 > div {
+  color: var(--as-ink) !important;
+  font-size: 15px !important;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-wrap !important;
+}
+
+/* Dark mode for homework details */
+html.as-dark .jss60 {
+  padding: 16px 24px !important;
+}
+
+html.as-dark .homework-details {
+  background: var(--as-card) !important;
+  border-color: var(--as-line) !important;
+}
+
+html.as-dark .homework-details h4.MuiTypography-h4,
+html.as-dark .homework-details .jss76 {
+  color: var(--as-accent) !important;
+}
+
+html.as-dark .homework-details h5.MuiTypography-h5,
+html.as-dark .homework-details .jss77 {
+  color: var(--as-muted) !important;
+}
+
+html.as-dark .homework-details .jss78 {
+  background: #283548 !important;
+  border-color: var(--as-line) !important;
+}
+
+html.as-dark .homework-details .jss78 > div {
+  color: var(--as-ink) !important;
+}
+
+html.as-dark .homework-details .jss78 b {
+  color: var(--as-accent) !important;
+}
+
+html.as-dark .homework-details .MuiFormControlLabel-label {
+  color: var(--as-ink) !important;
+}
+
+html.as-dark .homework-details .MuiCheckbox-root {
+  color: var(--as-accent) !important;
+}
+
+html.as-dark .homework-details .MuiCheckbox-root.Mui-checked {
+  color: var(--as-accent) !important;
+}
+
+html.as-dark .homework-details .jss74 {
+  background: rgba(96, 165, 250, 0.12) !important;
+  border-left-color: var(--as-accent) !important;
+}
+
+html.as-dark .homework-details .jss74 > div {
+  color: var(--as-ink) !important;
+}
+
+/* ---------- Dialog/Modal Close Buttons ---------- */
+.MuiDialog-root .MuiIconButton-root[aria-label="close"],
+.MuiDialog-root .MuiIconButton-root[aria-label="Close"],
+.MuiDialog-root button[aria-label*="close"],
+.MuiDialog-root button[aria-label*="Close"],
+.MuiDialog-paper .MuiIconButton-root[aria-label="close"],
+.MuiDialog-paper .MuiIconButton-root[aria-label="Close"],
+.MuiDialog-paper button[aria-label*="close"],
+.MuiDialog-paper button[aria-label*="Close"],
+[role="dialog"] .MuiIconButton-root[aria-label="close"],
+[role="dialog"] .MuiIconButton-root[aria-label="Close"],
+[role="dialog"] button[aria-label*="close"],
+[role="dialog"] button[aria-label*="Close"] {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 8px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: var(--as-muted) !important;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease !important;
+}
+
+.MuiDialog-root .MuiIconButton-root[aria-label="close"]:hover,
+.MuiDialog-root .MuiIconButton-root[aria-label="Close"]:hover,
+.MuiDialog-root button[aria-label*="close"]:hover,
+.MuiDialog-root button[aria-label*="Close"]:hover,
+.MuiDialog-paper .MuiIconButton-root[aria-label="close"]:hover,
+.MuiDialog-paper .MuiIconButton-root[aria-label="Close"]:hover,
+.MuiDialog-paper button[aria-label*="close"]:hover,
+.MuiDialog-paper button[aria-label*="Close"]:hover,
+[role="dialog"] .MuiIconButton-root[aria-label="close"]:hover,
+[role="dialog"] .MuiIconButton-root[aria-label="Close"]:hover,
+[role="dialog"] button[aria-label*="close"]:hover,
+[role="dialog"] button[aria-label*="Close"]:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: var(--as-ink) !important;
+  transform: rotate(90deg) !important;
+}
+
+.MuiDialog-root .MuiIconButton-root[aria-label="close"] .MuiSvgIcon-root,
+.MuiDialog-root .MuiIconButton-root[aria-label="Close"] .MuiSvgIcon-root,
+.MuiDialog-root button[aria-label*="close"] .MuiSvgIcon-root,
+.MuiDialog-root button[aria-label*="Close"] .MuiSvgIcon-root,
+.MuiDialog-paper .MuiIconButton-root[aria-label="close"] .MuiSvgIcon-root,
+.MuiDialog-paper .MuiIconButton-root[aria-label="Close"] .MuiSvgIcon-root,
+.MuiDialog-paper button[aria-label*="close"] .MuiSvgIcon-root,
+.MuiDialog-paper button[aria-label*="Close"] .MuiSvgIcon-root,
+[role="dialog"] .MuiIconButton-root[aria-label="close"] .MuiSvgIcon-root,
+[role="dialog"] .MuiIconButton-root[aria-label="Close"] .MuiSvgIcon-root,
+[role="dialog"] button[aria-label*="close"] .MuiSvgIcon-root,
+[role="dialog"] button[aria-label*="Close"] .MuiSvgIcon-root {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Dark mode close buttons */
+html.as-dark .MuiDialog-root .MuiIconButton-root[aria-label="close"],
+html.as-dark .MuiDialog-root .MuiIconButton-root[aria-label="Close"],
+html.as-dark .MuiDialog-root button[aria-label*="close"],
+html.as-dark .MuiDialog-root button[aria-label*="Close"],
+html.as-dark .MuiDialog-paper .MuiIconButton-root[aria-label="close"],
+html.as-dark .MuiDialog-paper .MuiIconButton-root[aria-label="Close"],
+html.as-dark .MuiDialog-paper button[aria-label*="close"],
+html.as-dark .MuiDialog-paper button[aria-label*="Close"],
+html.as-dark [role="dialog"] .MuiIconButton-root[aria-label="close"],
+html.as-dark [role="dialog"] .MuiIconButton-root[aria-label="Close"],
+html.as-dark [role="dialog"] button[aria-label*="close"],
+html.as-dark [role="dialog"] button[aria-label*="Close"] {
+  color: var(--as-muted) !important;
+}
+
+html.as-dark .MuiDialog-root .MuiIconButton-root[aria-label="close"]:hover,
+html.as-dark .MuiDialog-root .MuiIconButton-root[aria-label="Close"]:hover,
+html.as-dark .MuiDialog-root button[aria-label*="close"]:hover,
+html.as-dark .MuiDialog-root button[aria-label*="Close"]:hover,
+html.as-dark .MuiDialog-paper .MuiIconButton-root[aria-label="close"]:hover,
+html.as-dark .MuiDialog-paper .MuiIconButton-root[aria-label="Close"]:hover,
+html.as-dark .MuiDialog-paper button[aria-label*="close"]:hover,
+html.as-dark .MuiDialog-paper button[aria-label*="Close"]:hover,
+html.as-dark [role="dialog"] .MuiIconButton-root[aria-label="close"]:hover,
+html.as-dark [role="dialog"] .MuiIconButton-root[aria-label="Close"]:hover,
+html.as-dark [role="dialog"] button[aria-label*="close"]:hover,
+html.as-dark [role="dialog"] button[aria-label*="Close"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--as-ink) !important;
+}
+
 html.as-dark .sticky-table-cell {
   border-color: var(--as-line) !important;
   background: var(--as-card) !important;

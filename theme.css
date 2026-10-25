@@ -1648,6 +1648,162 @@ html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper hr {
   }
 }
 
+/* ---------- Homework Details Inner Content Styling ---------- */
+/* Status badge */
+html.as-homework-card-layout .homework-details-dialog .homework-group-header-badge,
+html.as-homework-card-layout .homework-details-dialog [class*="status-badge"],
+html.as-homework-card-layout .homework-details-dialog [class*="meta-badge"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-group-header-badge[style*="rgb(158, 158, 158)"],
+html.as-homework-card-layout .homework-details-dialog [class*="status-badge"][style*="rgb(158, 158, 158)"],
+html.as-homework-card-layout .homework-details-dialog [class*="meta-badge"][style*="rgb(158, 158, 158)"] {
+  background-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-group-header-badge[style*="rgb(76, 175, 80)"],
+html.as-homework-card-layout .homework-details-dialog [class*="status-badge"][style*="rgb(76, 175, 80)"],
+html.as-homework-card-layout .homework-details-dialog [class*="meta-badge"][style*="rgb(76, 175, 80)"] {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-group-header-badge[style*="rgb(244, 67, 54)"],
+html.as-homework-card-layout .homework-details-dialog [class*="status-badge"][style*="rgb(244, 67, 54)"],
+html.as-homework-card-layout .homework-details-dialog [class*="meta-badge"][style*="rgb(244, 67, 54)"] {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .homework-group-header-badge[style*="rgb(255, 152, 0)"],
+html.as-homework-card-layout .homework-details-dialog [class*="status-badge"][style*="rgb(255, 152, 0)"],
+html.as-homework-card-layout .homework-details-dialog [class*="meta-badge"][style*="rgb(255, 152, 0)"] {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+/* Metadata section styling */
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div {
+  margin-bottom: 20px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div > div {
+  margin-bottom: 6px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div > div > div {
+  color: var(--as-ink, #1f2937) !important;
+  font-size: 14px !important;
+  line-height: 1.8;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div > div > div b {
+  color: var(--as-navy, #0b1f4d) !important;
+  font-weight: 600 !important;
+  min-width: 85px;
+  display: inline-block;
+}
+
+/* Checkbox section */
+html.as-homework-card-layout .homework-details-dialog .MuiFormControl-root {
+  margin: 16px 0 !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiFormControlLabel-root {
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiFormControlLabel-label {
+  color: var(--as-ink, #1f2937) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  margin-left: 8px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root {
+  color: var(--as-navy, #0b1f4d) !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root.Mui-checked {
+  color: var(--as-navy, #0b1f4d) !important;
+}
+
+/* Ensure checkbox SVG icon is always visible */
+html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root .MuiSvgIcon-root {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root .MuiIconButton-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root input {
+  opacity: 0 !important;
+  position: absolute !important;
+}
+
+/* Description box */
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div:last-child {
+  background: var(--as-tint, #e4ebf8) !important;
+  border-radius: 12px !important;
+  padding: 18px 22px !important;
+  border-left: 4px solid var(--as-navy, #0b1f4d) !important;
+  margin-top: 12px !important;
+}
+
+html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div:last-child > div {
+  color: var(--as-ink, #1f2937) !important;
+  font-size: 15px !important;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-wrap !important;
+}
+
+/* Dark mode for homework details inner content */
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div > div > div {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div > div > div b {
+  color: var(--as-accent, #60a5fa) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiFormControlLabel-label {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root {
+  color: var(--as-accent, #60a5fa) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiCheckbox-root.Mui-checked {
+  color: var(--as-accent, #60a5fa) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div:last-child {
+  background: rgba(96, 165, 250, 0.12) !important;
+  border-left-color: var(--as-accent, #60a5fa) !important;
+}
+
+html.as-dark html.as-homework-card-layout .homework-details-dialog .MuiDialog-paper > div:not(.homework-details-dialog-close-button) > div:last-child > div {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
 
 /* =============================================================
    Messaging refinement — native controls, clearer hierarchy

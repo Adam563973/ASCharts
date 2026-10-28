@@ -87,6 +87,14 @@
   text-decoration: underline;
 }
 
+html.as-dark #desktop-app header + div a {
+  color: var(--as-accent-ink, #bc9fef);
+}
+
+html.as-dark #desktop-app header + div a:hover {
+  color: #ffffff;
+}
+
 /* ---------- Buttons & controls ---------- */
 #desktop-app .MuiButton-contained {
   background-color: var(--as-navy) !important;
@@ -555,6 +563,50 @@ html.as-dark .announcement-card .MuiTypography-body1 {
   color: #cbd5e1 !important;
 }
 
+html.as-dark .as-announcement-school {
+  color: var(--as-accent-ink, #9fb7ef) !important;
+}
+
+html.as-dark .as-announcement-meta {
+  color: #94a3b8 !important;
+}
+
+html.as-dark .as-announcement-meta span,
+html.as-dark .as-announcement-meta b {
+  color: inherit !important;
+}
+
+html.as-dark .homework-group > div {
+  border-color: var(--as-line) !important;
+}
+
+html.as-dark .homework-group table tbody td {
+  color: var(--as-ink) !important;
+  border-color: var(--as-line) !important;
+}
+
+html.as-dark .homework-group table tbody tr:nth-of-type(2n+1) td {
+  background-color: rgba(255, 255, 255, 0.035) !important;
+}
+
+html.as-dark .homework-group table tbody tr:hover td {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.as-dark .homework-details-dialog .homework-details {
+  color: var(--as-ink) !important;
+}
+
+html.as-dark .homework-details-dialog .homework-details div:has(> .MuiFormControl-root) {
+  background: #263449 !important;
+  border-color: var(--as-line) !important;
+}
+
+html.as-dark .homework-details-dialog .MuiFormControlLabel-root,
+html.as-dark .homework-details-dialog .MuiFormControlLabel-label {
+  color: var(--as-ink) !important;
+}
+
 html.as-dark .MuiOutlinedInput-root {
   background: #283548 !important;
   color: var(--as-ink) !important;
@@ -632,6 +684,26 @@ html.as-dark .behaviour-page h6.MuiTypography-h6 {
 html.as-dark .homework-group-header-badge,
 html.as-dark .homework-page [class^="meta-badge"] {
   border-color: var(--as-line) !important;
+}
+
+/* Status pills use bright inline colours with white text. Darken the
+   fill while keeping the hue so the white label stays readable. */
+html.as-dark .homework-group-header-badge {
+  filter: brightness(0.62) saturate(1.15);
+}
+
+html.as-dark .homework-page .meta-badge-requires-submission .MuiFormControlLabel-label {
+  color: #172033 !important;
+}
+
+html.as-dark .homework-page .meta-badge-requires-submission .MuiCheckbox-root {
+  color: #475569 !important;
+}
+
+/* The task-count square is hard-coded white in the site theme. */
+html.as-dark .homework-group > div > .MuiGrid-container > .MuiGrid-item:last-child > div {
+  background: #243247 !important;
+  color: var(--as-ink, #e2e8f0) !important;
 }
 
 html.as-dark .MuiDivider-root,
@@ -1139,6 +1211,26 @@ html.as-dark .MuiTooltip-arrow {
   font-size: 13.5px !important;
   font-weight: 600 !important;
   letter-spacing: -0.05px !important;
+}
+
+/* Keep Material UI's floating label above our white field surface, and
+   suppress the standard-variant underline so the field reads as one control. */
+.as-mycode-dialog .MuiFormLabel-root,
+.as-mycode-dialog .MuiInputLabel-root {
+  z-index: 2 !important;
+  pointer-events: none !important;
+  padding: 0 4px !important;
+}
+
+.as-mycode-dialog .MuiInput-underline::before,
+.as-mycode-dialog .MuiInput-underline::after {
+  display: none !important;
+}
+
+.as-mycode-dialog .MuiInputLabel-shrink,
+.as-mycode-dialog .MuiInputLabel-root[data-shrink="true"] {
+  background: #ffffff !important;
+  border-radius: 4px !important;
 }
 
 /* Material UI text/date/select controls and native DOB selectors. */
@@ -1875,5 +1967,729 @@ html.as-dark .desktop-messages-page .message-threads {
   .desktop-messages-page * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+/* ===================================================================
+   ASCharts 1.4 — refinement layer
+   Appearance, density, contrast, motion and dark-mode fixes.
+   =================================================================== */
+
+:root {
+  --as-side-bg: #f7f9fc;
+}
+
+/* ---------- Background treatments ---------- */
+
+html.as-bg-soft #desktop-app header + div {
+  background-image:
+    radial-gradient(circle at 12% -8%, rgba(var(--as-accent-rgb, 31, 79, 209), 0.11), transparent 36%),
+    radial-gradient(circle at 92% 4%, rgba(var(--as-accent-rgb, 31, 79, 209), 0.07), transparent 30%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+html.as-dark.as-bg-soft #desktop-app header + div {
+  background-image:
+    radial-gradient(circle at 12% -8%, rgba(var(--as-accent-rgb, 31, 79, 209), 0.2), transparent 38%),
+    radial-gradient(circle at 92% 4%, rgba(var(--as-accent-rgb, 31, 79, 209), 0.12), transparent 32%);
+}
+
+html.as-bg-flat #desktop-app header + div {
+  background-image: none !important;
+}
+
+/* ---------- Density ---------- */
+
+html.as-density-compact .calendar-header {
+  padding: 9px 14px !important;
+  margin-bottom: 12px !important;
+}
+
+html.as-density-compact .announcement-card {
+  margin-bottom: 12px !important;
+}
+
+html.as-density-compact .announcement-card .MuiPaper-rounded {
+  padding: 15px 18px !important;
+}
+
+html.as-density-compact .homework-group {
+  margin-bottom: 12px !important;
+}
+
+html.as-density-compact .activity-entry {
+  padding: 10px 13px !important;
+}
+
+html.as-density-compact .detentions-page > div,
+html.as-density-compact .mental-health-page > div:has(> h5) {
+  padding: 15px 18px !important;
+}
+
+html.as-density-compact .desktop-drawer-pupil-menu-item {
+  min-height: 39px !important;
+}
+
+html.as-density-compact .as-settings-row {
+  padding: 11px 16px;
+}
+
+html.as-density-compact .as-settings-content-head {
+  padding-top: 19px;
+  padding-bottom: 10px;
+}
+
+html.as-density-compact .as-settings-section {
+  margin-bottom: 18px;
+}
+
+html.as-density-compact .as-settings-actions {
+  padding: 12px 16px;
+}
+
+/* ---------- Corner radius ---------- */
+
+html.as-radius-sharp #desktop-app .MuiButton-root,
+html.as-radius-sharp #desktop-app .MuiIconButton-root,
+html.as-radius-sharp #desktop-app .MuiOutlinedInput-root,
+html.as-radius-sharp #desktop-app .MuiPaper-rounded,
+html.as-radius-sharp #desktop-app .MuiDialog-paper,
+html.as-radius-sharp #desktop-app .MuiMenu-paper,
+html.as-radius-sharp #desktop-app .MuiPopover-paper,
+html.as-radius-sharp .timetable-header .MuiPaper-rounded {
+  border-radius: 6px !important;
+}
+
+html.as-radius-round #desktop-app .MuiButton-root,
+html.as-radius-round #desktop-app .MuiIconButton-root,
+html.as-radius-round #desktop-app .MuiOutlinedInput-root,
+html.as-radius-round #desktop-app .MuiPaper-rounded,
+html.as-radius-round #desktop-app .MuiDialog-paper,
+html.as-radius-round #desktop-app .MuiMenu-paper,
+html.as-radius-round #desktop-app .MuiPopover-paper,
+html.as-radius-round .timetable-header .MuiPaper-rounded {
+  border-radius: 22px !important;
+}
+
+/* ---------- High contrast ---------- */
+
+html.as-high-contrast {
+  --as-line: #94a3b8;
+  --as-muted: #475569;
+  --as-ui-border: #94a3b8;
+  --as-ui-border-strong: #475569;
+  --as-ui-muted: #475569;
+  --as-ui-faint: #64748b;
+}
+
+html.as-dark.as-high-contrast {
+  --as-line: #64748b;
+  --as-muted: #cbd5e1;
+  --as-ui-border: #64748b;
+  --as-ui-border-strong: #94a3b8;
+  --as-ui-muted: #cbd5e1;
+  --as-ui-faint: #94a3b8;
+}
+
+html.as-high-contrast #desktop-app .MuiPaper-root,
+html.as-high-contrast #desktop-app .MuiOutlinedInput-root,
+html.as-high-contrast .desktop-drawer-pupil-menu-item[data-as-active],
+html.as-high-contrast .as-settings-card,
+html.as-high-contrast .as-settings-row,
+html.as-high-contrast .as-settings-dialog,
+html.as-high-contrast .as-confirm-card,
+html.as-high-contrast .as-info-modal-card,
+html.as-high-contrast .as-toast {
+  border-color: var(--as-ui-border, #94a3b8) !important;
+}
+
+html.as-high-contrast .desktop-drawer-pupil-menu-item[data-as-active] {
+  box-shadow: inset 0 0 0 1px var(--as-brand-fg, #0b1f4d);
+}
+
+html.as-high-contrast #desktop-app a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+html.as-high-contrast .as-settings-button:focus-visible,
+html.as-high-contrast .as-settings-tab:focus-visible,
+html.as-high-contrast .as-confirm-button:focus-visible,
+html.as-high-contrast .as-info-modal-button:focus-visible,
+html.as-high-contrast .as-settings-gear:focus-visible,
+html.as-high-contrast .as-sidebar-toggle:focus-visible {
+  outline-width: 3px !important;
+}
+
+/* ---------- Page transitions / hover ---------- */
+
+html.as-no-page-transitions .as-in {
+  animation: none !important;
+}
+
+html.as-no-card-hover .announcement-card .MuiPaper-rounded:hover,
+html.as-no-card-hover .homework-group:hover,
+html.as-no-card-hover .activity-entry:hover,
+html.as-no-card-hover .calendar-header:hover,
+html.as-no-card-hover .detentions-page > div:hover {
+  transform: none !important;
+  box-shadow: var(--as-shadow) !important;
+}
+
+/* ---------- Reduced motion ---------- */
+
+html.as-reduce-motion *,
+html.as-reduce-motion *::before,
+html.as-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.as-reduce-motion .as-in {
+  animation: none !important;
+}
+
+html.as-reduce-motion .as-confetti-overlay {
+  display: none !important;
+}
+
+/* Keep toast progress honest even when animation speed is overridden. */
+html.as-anim-off .as-toast-progress,
+html.as-anim-slow .as-toast-progress,
+html.as-anim-fast .as-toast-progress {
+  animation-duration: var(--as-toast-duration, 3s) !important;
+}
+
+html.as-anim-slow * {
+  transition-duration: 0.45s !important;
+}
+
+html.as-anim-fast * {
+  transition-duration: 0.12s !important;
+}
+
+html.as-anim-off .as-toast,
+html.as-anim-off .as-settings-dialog,
+html.as-anim-off .as-confirm-card,
+html.as-anim-off .as-info-modal-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Reading mode ---------- */
+
+html.as-reading-mode #desktop-app .homework-details-dialog p,
+html.as-reading-mode #desktop-app .homework-details-dialog .MuiTypography-body1,
+html.as-reading-mode #desktop-app .homework-details-dialog .MuiTypography-body2,
+html.as-reading-mode #desktop-app .announcement-card p,
+html.as-reading-mode #desktop-app .announcement-card .MuiTypography-body1,
+html.as-reading-mode #desktop-app .activity-entry,
+html.as-reading-mode #desktop-app .desktop-messages-page [class*="message-body"],
+html.as-reading-mode #desktop-app .desktop-messages-page [class*="message-text"],
+html.as-reading-mode #desktop-app .mental-health-page p {
+  line-height: 1.85 !important;
+  letter-spacing: 0.012em !important;
+}
+
+html.as-reading-mode #desktop-app .announcement-card .MuiTypography-body1,
+html.as-reading-mode #desktop-app .mental-health-page p {
+  max-width: 74ch;
+}
+
+/* ---------- Font size refinements ---------- */
+
+html.as-font-small .desktop-drawer-pupil-menu-item .MuiListItemText-primary {
+  font-size: 13.5px !important;
+}
+
+html.as-font-large .desktop-drawer-pupil-menu-item .MuiListItemText-primary {
+  font-size: 15.5px !important;
+}
+
+html.as-font-small .as-settings-label,
+html.as-font-small .as-settings-tab,
+html.as-font-small .as-settings-button,
+html.as-font-small .as-confirm-button,
+html.as-font-small .as-info-modal-button {
+  font-size: 12.5px !important;
+}
+
+html.as-font-large .as-settings-label,
+html.as-font-large .as-settings-tab,
+html.as-font-large .as-settings-button,
+html.as-font-large .as-confirm-button,
+html.as-font-large .as-info-modal-button {
+  font-size: 14.5px !important;
+}
+
+/* ---------- Dark-mode fixes ---------- */
+
+html.as-dark .desktop-drawer-pupil > div:first-child > div {
+  background: var(--as-card, #1e293b) !important;
+  border-color: var(--as-line, #334155) !important;
+}
+
+html.as-dark .desktop-drawer-pupil > div:first-child > div,
+html.as-dark .desktop-drawer-pupil > div:first-child > div b {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .desktop-drawer-pupil > div:first-child > div small {
+  color: var(--as-muted, #94a3b8) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item:hover {
+  background-color: var(--as-tint-2, rgba(30, 58, 122, 0.3)) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item[data-as-active] {
+  background-color: var(--as-tint, rgba(30, 58, 122, 0.5)) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item[data-as-active]::before {
+  background: var(--as-brand-fg, #93b5f7) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item[data-as-active] .MuiListItemIcon-root > svg.as-icon,
+html.as-dark .desktop-drawer-pupil-menu-item[data-as-active] .MuiListItemText-primary {
+  color: var(--as-brand-fg, #93b5f7) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item .MuiListItemText-primary {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item .MuiListItemIcon-root > svg.as-icon {
+  color: var(--as-muted, #94a3b8) !important;
+}
+
+html.as-dark .desktop-drawer-pupil-menu-item:hover .MuiListItemIcon-root > svg.as-icon {
+  color: var(--as-brand-fg, #93b5f7) !important;
+}
+
+html.as-dark .MuiTableContainer-root,
+html.as-dark .MuiTable-root,
+html.as-dark .MuiTableHead-root,
+html.as-dark .MuiTableBody-root,
+html.as-dark .MuiTableRow-root {
+  background: transparent !important;
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .MuiTableCell-root {
+  border-color: var(--as-line, #334155) !important;
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .MuiTableCell-head {
+  background: var(--as-side-bg, #1a2332) !important;
+  color: var(--as-muted, #94a3b8) !important;
+}
+
+html.as-dark .MuiTableRow-root:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+html.as-dark .MuiInputBase-input::placeholder,
+html.as-dark .MuiOutlinedInput-input::placeholder {
+  color: var(--as-muted, #94a3b8) !important;
+  opacity: 0.8 !important;
+}
+
+html.as-dark .MuiSelect-icon,
+html.as-dark .MuiSvgIcon-root {
+  color: var(--as-muted, #94a3b8);
+}
+
+html.as-dark .MuiMenu-paper,
+html.as-dark .MuiPopover-paper {
+  background: var(--as-card, #1e293b) !important;
+  color: var(--as-ink, #e2e8f0) !important;
+  border-color: var(--as-line, #334155) !important;
+}
+
+html.as-dark .MuiMenuItem-root {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .MuiMenuItem-root:hover {
+  background: var(--as-tint-2, rgba(30, 58, 122, 0.3)) !important;
+  color: var(--as-brand-fg, #93b5f7) !important;
+}
+
+html.as-dark .MuiDialog-paper,
+html.as-dark .modal-content {
+  background: var(--as-card, #1e293b) !important;
+  color: var(--as-ink, #e2e8f0) !important;
+  border-color: var(--as-line, #334155) !important;
+}
+
+html.as-dark .MuiDialogTitle-root,
+html.as-dark .MuiDialogContent-root,
+html.as-dark .MuiDialogContentText-root,
+html.as-dark .modal-header,
+html.as-dark .modal-body {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .report-concern-page,
+html.as-dark .report-concern-page input,
+html.as-dark .report-concern-page textarea,
+html.as-dark .report-concern-page select {
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .report-concern-page input,
+html.as-dark .report-concern-page textarea,
+html.as-dark .report-concern-page select {
+  background: #283548 !important;
+  border-color: var(--as-line, #334155) !important;
+}
+
+html.as-dark .desktop-messages-page .message-threads,
+html.as-dark .desktop-messages-page [class*="message-body"],
+html.as-dark .desktop-messages-page [class*="bubble"] {
+  border-color: var(--as-line, #334155) !important;
+}
+
+/* The right-hand conversation column is a hard-coded light grid item.
+   Scope this to the page's main grid so nested header grids stay clear. */
+html.as-dark .desktop-messages-page > .MuiGrid-container > .MuiGrid-item:last-child,
+html.as-dark .desktop-messages-page .message-thread-messages,
+html.as-dark .desktop-messages-page .message-thread-messages > div {
+  background-color: var(--as-card, #1e293b) !important;
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages > div > div:first-child:has(> .MuiGrid-container) {
+  background: var(--as-accent, #8c58e4) !important;
+  color: #ffffff !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages > div > div:first-child:has(> .MuiGrid-container) * {
+  color: #ffffff !important;
+}
+
+/* Empty-state placeholder wrapper: keep the pane dark instead of painting
+   the blank placeholder panel with the accent colour. */
+html.as-dark .desktop-messages-page .message-thread-messages > div > div:only-child {
+  background: transparent !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages-entry .text {
+  background: #243247 !important;
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages-entry .text span {
+  color: inherit !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages > div > div:has(textarea) {
+  background: var(--as-card, #1e293b) !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages > div > div:has(textarea) .MuiSvgIcon-root {
+  color: var(--as-muted, #94a3b8) !important;
+}
+
+html.as-dark .desktop-messages-page .message-thread-messages input,
+html.as-dark .desktop-messages-page .message-thread-messages textarea {
+  background-color: #243247 !important;
+  color: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .as-settings-gear:hover,
+html.as-dark .as-sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+html.as-dark .as-scroll-top {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Small screen header ---------- */
+
+@media (max-width: 420px) {
+  #desktop-app header .MuiToolbar-root {
+    padding-left: 8px !important;
+    padding-right: 6px !important;
+  }
+
+  .as-settings-gear,
+  .as-sidebar-toggle {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* ---------- Highcharts dark-mode surfaces ---------- */
+
+html.as-dark .highcharts-background {
+  fill: var(--as-card, #1e293b) !important;
+}
+
+html.as-dark .highcharts-root text,
+html.as-dark .highcharts-axis-labels text,
+html.as-dark .highcharts-data-labels text {
+  fill: var(--as-muted, #94a3b8) !important;
+}
+
+html.as-dark .highcharts-title text,
+html.as-dark .highcharts-subtitle text,
+html.as-dark .highcharts-legend-item text {
+  fill: var(--as-ink, #e2e8f0) !important;
+}
+
+/* Donut and pie labels need to read on both the dark card and bright
+   segments. Highcharts draws a separate outline tspan behind the label,
+   so flip its white outline to dark and keep the label text light. */
+html.as-dark .highcharts-data-label text {
+  fill: #f8fafc !important;
+  stroke: none !important;
+  font-weight: 700 !important;
+}
+
+html.as-dark .highcharts-data-label .highcharts-text-outline {
+  fill: #0f172a !important;
+  stroke: #0f172a !important;
+  stroke-width: 2.5px !important;
+}
+
+html.as-dark .highcharts-grid-line,
+html.as-dark .highcharts-axis-line,
+html.as-dark .highcharts-tick {
+  stroke: var(--as-line, #334155) !important;
+}
+
+html.as-dark .highcharts-plot-border {
+  stroke: var(--as-line, #334155) !important;
+}
+
+html.as-dark .highcharts-legend-box {
+  fill: transparent !important;
+  stroke: transparent !important;
+}
+
+html.as-dark .highcharts-tooltip-box {
+  fill: var(--as-card, #1e293b) !important;
+  stroke: var(--as-line, #334155) !important;
+}
+
+html.as-dark .highcharts-tooltip text {
+  fill: var(--as-ink, #e2e8f0) !important;
+}
+
+html.as-dark .highcharts-tooltip > span,
+html.as-dark .highcharts-tooltip-container {
+  background: var(--as-card, #1e293b) !important;
+  color: var(--as-ink, #e2e8f0) !important;
+  border-color: var(--as-line, #334155) !important;
+}
+
+/* ---------- Accessible accent foregrounds ---------- */
+
+#desktop-app .MuiButton-contained {
+  color: var(--as-on-accent, #ffffff) !important;
+}
+
+#desktop-app .MuiButton-contained .MuiSvgIcon-root {
+  color: inherit !important;
+}
+
+html.as-dark #desktop-app .MuiButton-contained {
+  background-color: var(--as-accent, #7f9de6) !important;
+  color: var(--as-on-accent, #0b1220) !important;
+}
+
+html.as-dark #desktop-app .MuiButton-contained:hover {
+  background-color: var(--as-navy-2, #93aceb) !important;
+  color: var(--as-on-accent, #0b1220) !important;
+}
+
+/* ===================================================================
+   ASCharts 1.5 — calmer motion and better messaging proportions
+   =================================================================== */
+
+/* The thread list was doing too much work: narrow it, give each
+   conversation room to breathe and keep avatars in proportion.
+   Size the MUI grid column, then let the list fill it so min-width
+   and max-width cannot fight and leave an empty gutter. */
+.desktop-messages-page .MuiGrid-item:has(> .message-threads) {
+  flex: 0 0 clamp(236px, 27%, 300px) !important;
+  width: clamp(236px, 27%, 300px) !important;
+  min-width: 212px !important;
+  max-width: 300px !important;
+}
+
+.desktop-messages-page .message-threads {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 6px 0 !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItem-root,
+.desktop-messages-page .message-threads .MuiListItemButton-root,
+.desktop-messages-page .message-threads > [class*="thread"] {
+  min-height: 62px !important;
+  padding: 12px 14px !important;
+  align-items: center !important;
+}
+
+.desktop-messages-page .message-threads .MuiAvatar-root,
+.desktop-messages-page .message-threads img {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 13px !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItemText-primary {
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+.desktop-messages-page .message-threads .MuiListItemText-secondary {
+  font-size: 11.8px !important;
+  line-height: 1.35 !important;
+}
+
+/* A slightly narrower measure makes long messages easier to scan. */
+.desktop-messages-page [class*="message-body"],
+.desktop-messages-page [class*="message-text"],
+.desktop-messages-page [class*="bubble"],
+.desktop-messages-page .as-msg-sent,
+.desktop-messages-page .as-msg-received,
+.desktop-messages-page .message-thread-messages-entry .text {
+  box-sizing: border-box !important;
+  max-width: min(68%, 560px) !important;
+  padding: 10px 13px !important;
+  margin-bottom: 12px !important;
+  line-height: 1.58 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.desktop-messages-page .message-thread-messages-entry .text span {
+  line-height: inherit !important;
+}
+
+/* The conversation header gets the same hairline as the thread list. */
+.desktop-messages-page .message-thread-messages > div > div:first-child:has(> .MuiGrid-container) {
+  border-bottom: 1px solid var(--as-line, #e3e8ef) !important;
+}
+
+.desktop-messages-page textarea,
+.desktop-messages-page .message-thread-messages textarea {
+  max-height: 132px !important;
+  min-height: 42px !important;
+  line-height: 1.45 !important;
+}
+
+.desktop-messages-page .message-thread-messages > div > div:only-child:not(:has(textarea)) {
+  text-align: center;
+}
+
+@keyframes as-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.desktop-messages-page .message-thread-messages-entry {
+  animation: as-message-in 0.28s var(--as-ease, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+  transform-origin: 50% 100%;
+}
+
+/* Settings tabs fade in instead of snapping. */
+@keyframes as-tab-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.as-settings-content-body {
+  animation: as-tab-in 0.26s var(--as-ease, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+}
+
+/* The active sidebar marker grows into place. */
+@keyframes as-accent-slide {
+  from {
+    opacity: 0.4;
+    transform: scaleY(0.25);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.desktop-drawer-pupil-menu-item[data-as-active]::before {
+  animation: as-accent-slide 0.3s var(--as-ease, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+  transform-origin: 50% 0;
+}
+
+/* A small response for the wordmark easter eggs. */
+@keyframes as-brand-pulse {
+  0%, 100% { transform: none; }
+  20% { transform: scale(1.06) rotate(-1deg); }
+  45% { transform: scale(1.02) rotate(0.6deg); }
+  70% { transform: scale(1.04) rotate(-0.3deg); }
+}
+
+.ascharts-header-brand.as-secret-pulse {
+  animation: as-brand-pulse 1.1s var(--as-ease, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+  transform-origin: left center;
+}
+
+@media (max-width: 760px) {
+  .desktop-messages-page .MuiGrid-item:has(> .message-threads) {
+    flex: 0 0 34% !important;
+    width: 34% !important;
+    min-width: 0 !important;
+    max-width: 36% !important;
+  }
+
+  .desktop-messages-page [class*="message-body"],
+  .desktop-messages-page [class*="bubble"],
+  .desktop-messages-page .as-msg-sent,
+  .desktop-messages-page .as-msg-received {
+    max-width: 86% !important;
+  }
+}
+
+html.as-no-page-transitions .desktop-messages-page .message-thread-messages-entry,
+html.as-reduce-motion .desktop-messages-page .message-thread-messages-entry,
+html.as-anim-off .desktop-messages-page .message-thread-messages-entry,
+html.as-reduce-motion .as-settings-content-body,
+html.as-anim-off .as-settings-content-body,
+html.as-reduce-motion .desktop-drawer-pupil-menu-item[data-as-active]::before,
+html.as-anim-off .desktop-drawer-pupil-menu-item[data-as-active]::before,
+html.as-reduce-motion .ascharts-header-brand.as-secret-pulse,
+html.as-anim-off .ascharts-header-brand.as-secret-pulse {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-messages-page .message-thread-messages-entry,
+  .as-settings-content-body,
+  .desktop-drawer-pupil-menu-item[data-as-active]::before,
+  .ascharts-header-brand.as-secret-pulse {
+    animation: none !important;
   }
 }

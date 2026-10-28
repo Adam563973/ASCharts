@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ASCharts",
-  "version": "1.3.10",
-  "description": "ASCharts visual refresh for Class Charts with accent theming, stable native dialogs, local display name, detention-free celebration, reading mode and optional keyboard shortcuts.",
+  "version": "1.5.0",
+  "description": "A calmer, more personal Class Charts experience with a command palette, themes, accessibility controls, smarter messaging and confetti celebrations.",
   "content_scripts": [
     {
       "matches": [
@@ -10,13 +10,15 @@
         "*://classcharts.com/*"
       ],
       "js": [
+        "core.js",
         "content.js",
         "sidebar.js",
         "pages.js",
         "settings.js",
         "concern-modal.js",
         "mycode-modal.js",
-        "features.js"
+        "features.js",
+        "palette.js"
       ],
       "css": [
         "style.css",

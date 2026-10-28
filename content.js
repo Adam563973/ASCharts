@@ -1,104 +1,135 @@
 (() => {
-  const DARK_BLUE = "var(--as-navy, #0b1f4d)";
+  'use strict';
+
+  const A = window.ASCharts;
+  if (!A) return;
+
+  /* =============================================================
+     ASCharts — content.js
+     Header theming and the ASCharts wordmark.
+     ============================================================= */
+
   const NAME_RE = /class\s*charts/gi;
+  const originalTitle = document.title;
+  const originalHeaderText = new Map();
 
-  function isTopBanner(el) {
-    const r = el.getBoundingClientRect();
-    if (r.top > 5 || r.height < 30 || r.height > 160 || r.width < window.innerWidth * 0.6) return false;
-    const bg = getComputedStyle(el).backgroundColor;
-    return bg && bg !== "transparent" && bg !== "rgba(0, 0, 0, 0)";
+  function header() {
+    return document.querySelector('#desktop-app header.MuiAppBar-root') ||
+      document.querySelector('#desktop-app header') ||
+      document.querySelector('header.MuiAppBar-root');
   }
 
-  function topBanners() {
-    return [...document.querySelectorAll("body *")].filter(isTopBanner);
+  function brandEnabled() {
+    return A.getBool('brandReplace');
   }
 
-  function paint(banners) {
-    for (const el of banners) {
-      el.style.setProperty("background-color", DARK_BLUE, "important");
-      el.style.setProperty("background-image", "none", "important");
-      el.style.setProperty("border-color", DARK_BLUE, "important");
+  function applyHeaderTheme() {
+    const appHeader = header();
+    if (!appHeader) return;
+    appHeader.style.setProperty('background-color', 'var(--as-header-bg, #0b1f4d)', 'important');
+    appHeader.style.setProperty('background-image', 'none', 'important');
+    appHeader.style.setProperty('color', 'var(--as-header-fg, #ffffff)', 'important');
+    appHeader.style.setProperty('border-color', 'transparent', 'important');
+    const toolbar = appHeader.querySelector('.MuiToolbar-root');
+    if (toolbar) toolbar.style.setProperty('background', 'transparent', 'important');
+  }
+
+  function brandSlot() {
+    const appHeader = header();
+    if (!appHeader) return null;
+    return appHeader.querySelector('.MuiToolbar-root > h6') ||
+      appHeader.querySelector('.MuiToolbar-root > .MuiTypography-h6') ||
+      appHeader.querySelector('.MuiToolbar-root > .MuiTypography-root');
+  }
+
+  function createBrand() {
+    const brand = document.createElement('span');
+    brand.className = 'ascharts-header-brand';
+    brand.setAttribute('aria-label', 'ASCharts');
+
+    const word = document.createElement('span');
+    word.className = 'ascharts-brand-word';
+    word.textContent = 'ASCharts';
+
+    brand.append(word);
+    return brand;
+  }
+
+  function ensureBrand() {
+    const slot = brandSlot();
+    if (!slot) return;
+    const existing = slot.querySelector(':scope > .ascharts-header-brand');
+
+    if (!brandEnabled()) {
+      if (existing) existing.remove();
+      slot.classList.remove('as-has-brand');
+      return;
+    }
+
+    if (!existing) slot.appendChild(createBrand());
+    slot.classList.add('as-has-brand');
+  }
+
+  function renameHeaderText() {
+    const appHeader = header();
+    if (!appHeader || !brandEnabled()) return;
+    const walker = document.createTreeWalker(appHeader, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!/class\s*charts/i.test(node.nodeValue)) continue;
+      if (!originalHeaderText.has(node)) originalHeaderText.set(node, node.nodeValue);
+      const next = node.nodeValue.replace(NAME_RE, 'ASCharts');
+      if (node.nodeValue !== next) node.nodeValue = next;
     }
   }
 
-  function renameText(banners) {
-    for (const root of banners) {
-      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-      let n;
-      while ((n = walker.nextNode())) {
-        if (/class\s*charts/i.test(n.nodeValue)) n.nodeValue = n.nodeValue.replace(NAME_RE, "ASCharts");
-      }
+  function restoreHeaderText() {
+    for (const [node, value] of originalHeaderText) {
+      if (node.isConnected && node.nodeValue !== value) node.nodeValue = value;
     }
-    if (/class\s*charts/i.test(document.title)) document.title = document.title.replace(NAME_RE, "ASCharts");
+    originalHeaderText.clear();
   }
 
-  function replaceLogos() {
-    for (const img of document.querySelectorAll("img, svg")) {
-      if (img.dataset.ascharts) continue;
-      const r = img.getBoundingClientRect();
-      if (r.top > 120 || r.width === 0) continue;
-      const hint = [
-        img.getAttribute("src"),
-        img.getAttribute("alt"),
-        img.getAttribute("class"),
-        img.parentElement && img.parentElement.className,
-        img.closest("a") && img.closest("a").getAttribute("href"),
-      ].join(" ").toLowerCase();
-      if (!/logo|classcharts|class-charts|brand/.test(hint)) continue;
-      let box = null;
-      for (let el = img.parentElement; el && el !== document.body; el = el.parentElement) {
-        const br = el.getBoundingClientRect();
-        if (br.top > 5 || br.height > 100) break;
-        box = el;
+  function updateTitle() {
+    if (brandEnabled()) {
+      if (/class\s*charts/i.test(document.title)) {
+        document.title = document.title.replace(NAME_RE, 'ASCharts');
       }
-      if (box) {
-        box.style.setProperty("background-color", DARK_BLUE, "important");
-        box.style.setProperty("background-image", "none", "important");
-      }
-      img.dataset.ascharts = "1";
-      img.style.display = "none";
-      if (!document.querySelector(".ascharts-logo")) {
-        const span = document.createElement("span");
-        span.className = "ascharts-logo";
-        span.textContent = "ASCharts";
-        img.insertAdjacentElement("afterend", span);
-      }
-    }
-  }
-
-  function replaceBackgroundLogos() {
-    for (const el of document.querySelectorAll("body *")) {
-      if (el.dataset.ascharts) continue;
-      const r = el.getBoundingClientRect();
-      if (r.top > 120 || r.width === 0) continue;
-      const bgImg = getComputedStyle(el).backgroundImage;
-      const hint = `${bgImg} ${el.id} ${el.className}`.toLowerCase();
-      if (!bgImg || bgImg === "none" || !/logo|classcharts|cc_/.test(hint)) continue;
-      el.dataset.ascharts = "1";
-      el.style.setProperty("background-image", "none", "important");
-      if (document.querySelector(".ascharts-logo")) continue;
-      const span = document.createElement("span");
-      span.className = "ascharts-logo";
-      span.style.height = "100%";
-      span.textContent = "ASCharts";
-      el.appendChild(span);
+    } else if (document.title !== originalTitle) {
+      document.title = originalTitle;
     }
   }
 
   function run() {
-    replaceBackgroundLogos();
-    const banners = topBanners();
-    paint(banners);
-    renameText(banners);
-    replaceLogos();
+    applyHeaderTheme();
+    ensureBrand();
+    if (brandEnabled()) renameHeaderText();
+    else restoreHeaderText();
+    updateTitle();
   }
 
   run();
+  window.addEventListener('load', run, { once: true });
+
+  document.addEventListener('ascharts:setting-changed', (event) => {
+    const key = event.detail && event.detail.key;
+    if (key === 'brandReplace' || key === 'theme' || key === 'accent') run();
+  });
+
+  window.addEventListener('ascharts:settings-imported', run);
+  window.addEventListener('ascharts:settings-reset', run);
+
   let queued = false;
   new MutationObserver(() => {
     if (queued) return;
     queued = true;
-    setTimeout(() => { queued = false; run(); }, 100);
-  }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
-  window.addEventListener("resize", run);
+    setTimeout(() => {
+      queued = false;
+      run();
+    }, 220);
+  }).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
 })();

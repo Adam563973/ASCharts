@@ -56,7 +56,11 @@
           // the site's controlled value, picker behaviour, or event handlers.
           if (DOB_TERMS.test(dialog.innerText || '') && control instanceof HTMLInputElement) {
             if (!control.getAttribute('aria-label')) control.setAttribute('aria-label', 'Date of birth');
-            if (!control.getAttribute('placeholder') && control.type !== 'date') control.setAttribute('placeholder', 'Date of birth');
+            const hasVisibleLabel = !!control.closest('label') ||
+              !!control.closest('.MuiFormControl-root')?.querySelector('label');
+            if (!hasVisibleLabel && !control.getAttribute('placeholder') && control.type !== 'date') {
+              control.setAttribute('placeholder', 'Date of birth');
+            }
           }
         }
       });
